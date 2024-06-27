@@ -2,7 +2,7 @@ require('dotenv').config()
 const express = require('express');
 const mongoose = require('mongoose');
 const app = express();
-const cors = require('cors')
+const cors = require('cors');
 const teacherRouter = require('./routes/teacherRoute')
 const MONGODB_URI = process.env.MONGODB_URI
 const PORT = process.env.PORT
@@ -21,7 +21,7 @@ app.use(express.json())
 
 
 const corsOptions = {
-    origin: 'https://school-fhb.vercel.app/', // Allow specific origin
+    origin: 'https://school-fhb.vercel.app', // Allow specific origin
     methods: ['GET', 'POST', 'PUT', 'DELETE'], // Allowed methods
     allowedHeaders: ['Content-Type', 'Authorization'], // Allowed headers
     optionsSuccessStatus: 204 // Response status for preflight OPTIONS requests
