@@ -18,7 +18,7 @@ db.on('error', console.error.bind(console, 'MongoDB connection error:'))
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 app.use(cors({
-    origin: 'https://school-fhb.vercel.app/',
+    origin: 'https://school-fhb.vercel.app/api/teacher',
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization']
 }));
