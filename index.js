@@ -22,7 +22,7 @@ app.use(cors())
 app.use('/', (req, res) => {
     res.send("Welcone")
 })
-app.use('/teacher', teacherRouter)
+app.use('/api/teacher', teacherRouter)
 
 
 
