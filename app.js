@@ -26,4 +26,4 @@ app.use('/api/teacher', teacherRouter)
 
 
 
-
+module.exports = app;
