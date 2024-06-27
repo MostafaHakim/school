@@ -1,22 +1,27 @@
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 
 function App() {
+  const [data, setData] = useState([])
   useEffect(() => {
     fetch('https://school-ebon-eight.vercel.app/api/teacher')
       .then(res => {
         return res.json()
       })
       .then(data => {
-        console.log(data)
+        setData(data)
       }, [])
 
   })
   return (
     <>
-      <div className="bg-green-600 text-white">
-        <h2>Name</h2>
-        <span>age</span>
-      </div>
+      {data.map(iteam => {
+        return (
+          <div className="bg-green-600 text-white">
+            <h2>{iteam.name}</h2>
+            <span>{iteam.age}</span>
+          </div>
+        )
+      })}
     </>
   )
 }
