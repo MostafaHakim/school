@@ -2,6 +2,13 @@ import { useEffect } from "react"
 
 function App() {
   useEffect(() => {
+    fetch('https://school-ebon-eight.vercel.app/api/teacher')
+      .then(res => {
+        return res.json()
+      })
+      .then(data => {
+        console.log(data)
+      })
 
   })
   return (
