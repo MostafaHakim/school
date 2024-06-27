@@ -18,15 +18,6 @@ db.on('error', console.error.bind(console, 'MongoDB connection error:'))
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 
-
-
-const corsOptions = {
-    origin: 'https://school-fhb.vercel.app', // Allow specific origin
-    methods: ['GET', 'POST', 'PUT', 'DELETE'], // Allowed methods
-    allowedHeaders: ['Content-Type', 'Authorization'], // Allowed headers
-    optionsSuccessStatus: 204 // Response status for preflight OPTIONS requests
-};
-app.use(cors(corsOptions));
 app.get('/', (req, res) => {
     res.send("Welcome")
 })
