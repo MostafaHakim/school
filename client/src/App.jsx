@@ -6,6 +6,7 @@ import Teacher from "./pages/Teacher"
 import Student from "./pages/Student"
 import About from "./pages/About"
 import Salary from "./pages/Salary"
+import Createsalary from "./pages/CreateSalary"
 
 
 function App() {
@@ -27,6 +28,7 @@ function App() {
         <Route path="teacher" element={<Teacher />} />
         <Route path="student" element={<Student />} />
         <Route path="/teacher/salary" element={<Salary />} />
+        <Route path="/teacher/salary/createsalary" element={<Createsalary />} />
         <Route path="about" element={<About />} />
       </Route>
     )
