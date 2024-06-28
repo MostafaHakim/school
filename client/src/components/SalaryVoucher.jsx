@@ -18,7 +18,7 @@ const SalaryVoucher = () => {
 
     return (
         <>
-            <div className="w-2/3 border-2 border-sky-500 py-2 px-4 flex flex-col items-center justify-center">
+            <div className="w-2/3 border-2 border-sky-500 py-2 px-4 flex flex-col items-center justify-center mt-20">
                 {data.filter(item => {
                     if (item.tId == id) {
                         return item
