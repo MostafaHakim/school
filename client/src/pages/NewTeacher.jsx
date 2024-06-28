@@ -42,6 +42,7 @@ const NewTeacher = () => {
                 "Content-Type": "application/json"
             }
         })
+        console.log(newTeacher)
     }
 
 
