@@ -30,7 +30,7 @@ const Salary = () => {
                         <div className="col-span-1 text-center">Create Salary</div>
                     </div>
                     {data.filter(item => {
-                        if (item.tId || item.tName == search) {
+                        if (item.tId == search) {
                             return item
                         }
                     }).map((item) => {
