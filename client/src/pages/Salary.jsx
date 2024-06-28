@@ -32,9 +32,8 @@ const Salary = () => {
                     {data.filter(item => {
                         if (item.tId == search) {
                             return item
-                        } else {
-                            return item
                         }
+
                     }).map((item) => {
                         return (
                             <div className="grid grid-cols-5 w-full py-2 uppercase bg-white">
