@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 const Salary = () => {
 
     const [data, setData] = useState([])
-    const [search, setSearch] = useState({})
+    const [search, setSearch] = useState([])
     useEffect(() => {
         fetch('https://school-ebon-eight.vercel.app/api/teacher')
             .then(res => {
