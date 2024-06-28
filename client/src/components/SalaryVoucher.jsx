@@ -1,52 +1,78 @@
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+
 const SalaryVoucher = () => {
+    const { id } = useParams()
+    const [data, setData] = useState()
+    useEffect(() => {
+        fetch('https://school-ebon-eight.vercel.app/api/teacher')
+            .then(res => {
+                return res.json()
+            })
+            .then(data => {
+                setData(data)
+            })
+    })
+
+
+
     return (
         <>
             <div className="w-2/3 border-2 border-sky-500 py-2 px-4 flex flex-col items-center justify-center">
-
-                <table class="table-fixed w-full border-collapse">
-                    <caption className="caption-top border border-slate-300">
-                        <h2 className="text-2xl uppercase">Fazlul haque bidhya Niketon</h2>
-                        <span className="text-xl uppercase py-2">Salary Voucher</span>
-                    </caption>
-                    <thead>
-                        <tr>
-                            <td className="border border-slate-300">TID</td>
-                            <td className="border border-slate-300">FHB2024301</td>
-                            <td className="border border-slate-300">Date</td>
-                            <td className="border border-slate-300">15/12/24</td>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td className="border border-slate-300">Name</td>
-                            <td className="border border-slate-300">Md Mostafa</td>
-                            <td className="border border-slate-300">Joining Date</td>
-                            <td className="border border-slate-300">15/11/23</td>
-                        </tr>
-                        <tr>
-                            <td className="border border-slate-300">Salary</td>
-                            <td className="border border-slate-300">15000</td>
-                            <td className="border border-slate-300">Late</td>
-                            <td className="border border-slate-300">02</td>
-                        </tr>
-                        <tr>
-                            <td className="border border-slate-300">Diduction</td>
-                            <td className="border border-slate-300">1500</td>
-                            <td className="border border-slate-300">Absent</td>
-                            <td className="border border-slate-300">02</td>
-                        </tr>
-                        <tr>
-                            <td className="border border-slate-300">Addition</td>
-                            <td className="border border-slate-300">1000</td>
-                            <td className="border border-slate-300">Net Salary</td>
-                            <td className="border border-slate-300">14500</td>
-                        </tr>
-                    </tbody>
-                </table>
-                <div className="flex flex-row items-center justify-start space-x-2 w-full border border-t-0 border-slate-300">
-                    <div>In Word</div>
-                    <div>Forthteen Thousand Five Hundred Only</div>
-                </div>
+                {data.filter(item => {
+                    if (item.tId == id) {
+                        return item
+                    }
+                }).map(item => {
+                    return (
+                        <table class="table-fixed w-full border-collapse">
+                            <caption className="caption-top border border-slate-300">
+                                <h2 className="text-2xl uppercase">Fazlul haque bidhya Niketon</h2>
+                                <span className="text-xl uppercase py-2">Salary Voucher</span>
+                            </caption>
+                            <thead>
+                                <tr>
+                                    <td className="border border-slate-300">TID</td>
+                                    <td className="border border-slate-300">{item.tId}</td>
+                                    <td className="border border-slate-300">Date</td>
+                                    <td className="border border-slate-300">15/12/24</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td className="border border-slate-300">Name</td>
+                                    <td className="border border-slate-300">{item.tName}</td>
+                                    <td className="border border-slate-300">Joining Date</td>
+                                    <td className="border border-slate-300">{item.tJoiningDate}</td>
+                                </tr>
+                                <tr>
+                                    <td className="border border-slate-300">Designation</td>
+                                    <td className="border border-slate-300">{item.tDesignation}</td>
+                                    <td className="border border-slate-300">Late</td>
+                                    <td className="border border-slate-300">02</td>
+                                </tr>
+                                <tr>
+                                    <td className="border border-slate-300">Salary</td>
+                                    <td className="border border-slate-300">{item.tSalary}</td>
+                                    <td className="border border-slate-300">Absent</td>
+                                    <td className="border border-slate-300">02</td>
+                                </tr>
+                                <tr>
+                                    <td className="border border-slate-300">Addition</td>
+                                    <td className="border border-slate-300">1000</td>
+                                    <td className="border border-slate-300">Diduction</td>
+                                    <td className="border border-slate-300">1500</td>
+                                </tr>
+                                <tr>
+                                    <td className="border border-slate-300">Net Salary</td>
+                                    <td className="border border-slate-300">14500</td>
+                                    <td className="border border-slate-300">In Word</td>
+                                    <td className="border border-slate-300">14500</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    )
+                })}
                 <div className="grid grid-cols-4 gap-4 items-center justify-around w-full">
                     <div className="mt-16 col-span-1">
                         <h2 className="border-t-2 border-black px-8 text-center">Accounts</h2>
