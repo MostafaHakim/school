@@ -5,7 +5,10 @@ const teacherSchema = mongoose.Schema({
     tName: String,
     tDesignation: String,
     tShift: String,
-    tSalary: Number,
+    tSalary: {
+        type: String,
+        required: true
+    },
     tLate: Number,
     tAbsent: Number,
     tAddition: Number,
