@@ -28,7 +28,7 @@ function App() {
         <Route path="teacher" element={<Teacher />} />
         <Route path="student" element={<Student />} />
         <Route path="/teacher/salary" element={<Salary />} />
-        <Route path="/teacher/salary/createsalary" element={<Createsalary />} />
+        <Route path="/teacher/salary/:id" element={<Createsalary />} />
         <Route path="about" element={<About />} />
       </Route>
     )
