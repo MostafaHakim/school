@@ -10,9 +10,29 @@ const getAllTeacher = async (req, res) => {
 }
 const createTeacher = async (req, res) => {
     try {
-        const { tId, tDesignation, tName, tShift } = req.body
+        const {
+            tId,
+            tName,
+            tDesignation,
+            tShift,
+            tSalary,
+            tLate,
+            tAbsent,
+            tAddition,
+            tDiduction,
+            tNetSalary
+        } = req.body
         const postTeacher = new Teacher({
-            tId, tDesignation, tName, tShift
+            tId,
+            tName,
+            tDesignation,
+            tShift,
+            tSalary,
+            tLate,
+            tAbsent,
+            tAddition,
+            tDiduction,
+            tNetSalary
         })
         const newTeacher = await postTeacher.save()
         res.status(200).send(newTeacher)
