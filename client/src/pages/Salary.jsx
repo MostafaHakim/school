@@ -44,7 +44,7 @@ const Salary = () => {
                                 <div className="col-span-1 text-center">{item.tName}</div>
                                 <div className="col-span-1 text-center">{item.tDesignation}</div>
                                 <div className="col-span-1 text-center">{item.tShift}</div>
-                                <div className="col-span-1 text-center"><Link to="/createsalary" className="px-4 py-1 bg-green-400 text-white">Create</Link></div>
+                                <div className="col-span-1 text-center"><Link to="createsalary" className="px-4 py-1 bg-green-400 text-white">Create</Link></div>
                             </div>
                         )
                     })}
