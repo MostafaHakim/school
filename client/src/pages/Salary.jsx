@@ -26,7 +26,7 @@ const Salary = () => {
                         <div className="col-span-1 text-center">Teacher Name</div>
                         <div className="col-span-1 text-center">Desicnation</div>
                         <div className="col-span-1 text-center">Shift</div>
-                        <div className="col-span-2 text-center"></div>
+                        <div className="col-span-2 text-center">Create Salary</div>
                     </div>
                     {data.map((item) => {
                         return (
