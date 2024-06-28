@@ -6,7 +6,9 @@ const cors = require('cors')
 const teacherRouter = require('./routes/teacherRoute')
 const MONGODB_URI = process.env.MONGODB_URI
 const PORT = process.env.PORT
-app.use(cors());
+app.use(cors({
+    origin: '*'
+}));
 
 
 mongoose.connect(MONGODB_URI, {
