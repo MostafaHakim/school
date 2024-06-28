@@ -8,6 +8,7 @@ import About from "./pages/About"
 import Salary from "./pages/Salary"
 import Createsalary from "./pages/CreateSalary"
 import NewTeacher from "./pages/NewTeacher"
+import SalaryVoucher from "./components/SalaryVoucher"
 
 
 function App() {
@@ -31,6 +32,7 @@ function App() {
         <Route path="/teacher/salary" element={<Salary />} />
         <Route path="/teacher/new" element={<NewTeacher />} />
         <Route path="/teacher/salary/:id" element={<Createsalary />} />
+        <Route path="/teacher/salary/:id/created" element={<SalaryVoucher />} />
         <Route path="about" element={<About />} />
       </Route>
     )
