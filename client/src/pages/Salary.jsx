@@ -5,8 +5,6 @@ const Salary = () => {
 
     const [data, setData] = useState([])
     const [search, setSearch] = useState([])
-    const [id, setId] = useState()
-    useParams(id)
     useEffect(() => {
         fetch('https://school-ebon-eight.vercel.app/api/teacher')
             .then(res => {
@@ -47,7 +45,7 @@ const Salary = () => {
                                 <div className="col-span-1 text-center">{item.tName}</div>
                                 <div className="col-span-1 text-center">{item.tDesignation}</div>
                                 <div className="col-span-1 text-center">{item.tShift}</div>
-                                <div className="col-span-1 text-center"><Link to={`/:${id}`} className="px-4 py-1 bg-green-400 text-white">Create</Link></div>
+                                <div className="col-span-1 text-center"><Link to={`/:${item.tID}`} className="px-4 py-1 bg-green-400 text-white">Create</Link></div>
                             </div>
                         )
                     })}
