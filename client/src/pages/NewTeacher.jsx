@@ -1,0 +1,49 @@
+const NewTeacher = () => {
+    return (
+        <>
+            <div className="w-9/12">
+                <div className="w-full m-10 border-2 border-sky-500 flex flex-col items-center justify-center">
+                    <h2 className="text-2xl uppercase text-sky-700 pt-8 border-double border-b-2 border-sky-900">New Teacher Registration Form</h2>
+                    <form action="" className="w-full p-8 flex flex-col space-y-2 text-xl">
+                        <div className="w-full grid grid-cols-5">
+                            <label className="col-span-2" htmlFor="tId">TID :</label>
+                            <span className="col-span-3">151201</span>
+                        </div>
+                        <div className="w-full grid grid-cols-5">
+                            <label className="col-span-2" htmlFor="tId">Name :</label>
+                            <input className="col-span-3 focus:outline-none border-[1px] border-slate-300 px-4 placeholder:text-sm" placeholder="Please Enter Full Name!!!" type="text" />
+                        </div>
+                        <div className="w-full grid grid-cols-5">
+                            <label className="col-span-2" htmlFor="tId">Designation :</label>
+                            <select className="col-span-3 focus:outline-none border-[1px] border-slate-300 px-4">
+                                <option>--Select One--</option>
+                                <option>Admin</option>
+                                <option>Accounts</option>
+                                <option>Asst Teacher</option>
+                            </select>
+                        </div>
+                        <div className="w-full grid grid-cols-5">
+                            <label className="col-span-2" htmlFor="tId">Shift :</label>
+                            <select className="col-span-3 focus:outline-none border-[1px] border-slate-300 px-4">
+                                <option>--Select One--</option>
+                                <option>Day</option>
+                                <option>Morning</option>
+                            </select>
+                        </div>
+                        <div className="w-full grid grid-cols-5">
+                            <label className="col-span-2" htmlFor="tId">Joining Date :</label>
+                            <input className="col-span-3 focus:outline-none border-[1px] border-slate-300 px-4 placeholder:text-sm" placeholder="Please Enter Joining Date!!!" type="text" />
+                        </div>
+                        <div className="w-full grid grid-cols-5">
+                            <label className="col-span-2" htmlFor="tId">Salary :</label>
+                            <input className="col-span-3 focus:outline-none border-[1px] border-slate-300 px-4 placeholder:text-sm" placeholder="Please Enter Amount!!!" type="text" />
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </>
+    );
+}
+
+export default NewTeacher;
