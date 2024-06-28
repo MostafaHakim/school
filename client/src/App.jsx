@@ -1,4 +1,12 @@
 import { useEffect, useState } from "react"
+import { Route, RouterProvider, createBrowserRouter, createRoutesFromElements } from 'react-router-dom'
+import RootLayouts from './layouts/RootLayouts'
+import Dashbord from "./pages/Dashboard"
+import Teacher from "./pages/Teacher"
+import Student from "./pages/Student"
+import About from "./pages/About"
+import Salary from "./pages/Salary"
+
 
 function App() {
   const [data, setData] = useState([])
@@ -12,16 +20,20 @@ function App() {
       }, [])
 
   })
+  const router = createBrowserRouter(
+    createRoutesFromElements(
+      <Route path="/" element={<RootLayouts />}>
+        <Route index element={<Dashbord />} />
+        <Route path="teacher" element={<Teacher />} />
+        <Route path="student" element={<Student />} />
+        <Route path="/teacher/salary" element={<Salary />} />
+        <Route path="about" element={<About />} />
+      </Route>
+    )
+  )
   return (
     <>
-      {data.map(iteam => {
-        return (
-          <div className="bg-green-600 text-white">
-            <h2>{iteam.name}</h2>
-            <span>{iteam.age}</span>
-          </div>
-        )
-      })}
+      <RouterProvider router={router} />
     </>
   )
 }
