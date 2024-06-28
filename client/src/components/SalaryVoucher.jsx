@@ -11,6 +11,7 @@ const SalaryVoucher = () => {
             })
             .then(data => {
                 setData(data)
+                console.log(data)
             })
     })
 
