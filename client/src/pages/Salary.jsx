@@ -30,9 +30,7 @@ const Salary = () => {
                         <div className="col-span-1 text-center">Create Salary</div>
                     </div>
                     {data.filter(item => {
-                        if (item.tId === search) {
-                            return item
-                        }
+                        item.tId == search ? item : "Please Enter TID "
                     }).map((item) => {
                         return (
                             <div className="grid grid-cols-5 w-full py-2 uppercase bg-white">
