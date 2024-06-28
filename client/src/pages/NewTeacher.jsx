@@ -36,7 +36,7 @@ const NewTeacher = () => {
     const handelSubmit = (e) => {
         e.preventDefault()
         fetch('https://school-ebon-eight.vercel.app/api/teacher', {
-            method: "post",
+            method: "POST",
             body: JSON.stringify(newTeacher),
             headers: {
                 "Content-Type": "application/json"
