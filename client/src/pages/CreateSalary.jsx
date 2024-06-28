@@ -70,7 +70,7 @@ const Createsalary = (tId, tName) => {
                         </div>
                         <div className="w-full">
                             <button className="transition-all ease-linear  duration-700 w-1/3 px-4 py-1 bg-sky-500 text-white shadow-lg hover:bg-pink-700 hover:w-2/3">Calculate</button>
-                            <Link to='createed' className="transition-all ease-linear  duration-700 px-4 py-1 bg-pink-500 text-white shadow-lg hover:bg-pink-700 w-1/3 hover:w-2/3 ">Create Voucher</Link>
+                            <Link to={`${id}`} className="transition-all ease-linear  duration-700 px-4 py-1 bg-pink-500 text-white shadow-lg hover:bg-pink-700 w-1/3 hover:w-2/3 ">Create Voucher</Link>
                         </div>
                     </div>
                 )
