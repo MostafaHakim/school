@@ -32,6 +32,8 @@ const Salary = () => {
                     {data.filter(item => {
                         if (item.tId == search) {
                             return item
+                        } else {
+                            return item
                         }
 
                     }).map((item) => {
