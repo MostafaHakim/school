@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 const Salary = () => {
 
     const [data, setData] = useState([])
-    const [search, setSearch] = useState([])
+    const [search, setSearch] = useState({})
     useEffect(() => {
         fetch('https://school-ebon-eight.vercel.app/api/teacher')
             .then(res => {
@@ -11,14 +11,18 @@ const Salary = () => {
             })
             .then(data => {
                 setData(data)
+                setSearch(data)
             })
     }, [])
+    const handelChange = (e) => {
+        setSearch((data.filter(item => item.tID.toLowerCase().includes(e.target.value))))
+    }
     return (
         <>
             <div className="w-full py-8 ">
                 <form className="grid grid-cols-8 items-center justify-center space-x-3 " action="">
                     <h2 className="col-span-2 text-xl font-semibold">Search TID or Teacher Name:</h2>
-                    <input className="col-span-3 focus:outline-none border-[1px] border-stone-200 p-1" type="text" onChange={(e) => { setSearch(e.target.value) }} />
+                    <input className="col-span-3 focus:outline-none border-[1px] border-stone-200 p-1" type="text" onChange={handelChange} />
                     <button className="col-span-1 py-1 px-4 bg-green-400 text-white hover:bg-green-600 transition-all duretion-700 hover:scale-110 ">Search</button>
                 </form>
                 <div className="w-10/12 bg-gray-100 h-screen">
@@ -29,11 +33,7 @@ const Salary = () => {
                         <div className="col-span-1 text-center">Shift</div>
                         <div className="col-span-1 text-center">Create Salary</div>
                     </div>
-                    {data.filter(item => {
-                        if (item.tId == search) {
-                            return item
-                        }
-                    }).map((item) => {
+                    {search.map((item) => {
                         return (
                             <div className="grid grid-cols-5 w-full py-2 uppercase bg-white">
                                 <div className="col-span-1 text-center">{item.tId}</div>
