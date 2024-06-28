@@ -6,7 +6,7 @@ const cors = require('cors');
 const teacherRouter = require('./routes/teacherRoute')
 const MONGODB_URI = process.env.MONGODB_URI
 const PORT = process.env.PORT
-const cors = require('cors')
+
 
 mongoose.connect(MONGODB_URI, {
     useNewUrlParser: true,
@@ -18,7 +18,7 @@ db.on('error', console.error.bind(console, 'MongoDB connection error:'))
 
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
-app.use(cors())
+
 
 app.get('/', (req, res) => {
     res.send("Welcome")
