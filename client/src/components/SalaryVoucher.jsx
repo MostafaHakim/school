@@ -43,7 +43,7 @@ const SalaryVoucher = () => {
                                     <td className="border border-slate-300">Name</td>
                                     <td className="border border-slate-300">{item.tName}</td>
                                     <td className="border border-slate-300">Joining Date</td>
-                                    <td className="border border-slate-300"></td>
+                                    <td className="border border-slate-300">{item.tJoiningDate}</td>
                                 </tr>
                                 <tr>
                                     <td className="border border-slate-300">Designation</td>
