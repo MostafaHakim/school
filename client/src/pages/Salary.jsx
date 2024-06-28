@@ -17,7 +17,7 @@ const Salary = () => {
 
 
     const handelChange = (e) => {
-        setSearch(data.filter(item => item.tName.toLowerCase().includes(e.target.value)))
+        setSearch(data.filter(item => item.tId.toLowerCase().includes(e.target.value)))
 
     }
     return (
