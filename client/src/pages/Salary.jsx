@@ -37,9 +37,9 @@ const Salary = () => {
                         <div className="col-span-1 text-center">Shift</div>
                         <div className="col-span-1 text-center">Create Salary</div>
                     </div>
-                    {search.map((item) => {
+                    {search.map((item, index) => {
                         return (
-                            <div className="grid grid-cols-5 w-full py-2 uppercase bg-white">
+                            <div className="grid grid-cols-5 w-full py-2 uppercase bg-white" key={index}>
                                 <div className="col-span-1 text-center">{item.tId}</div>
                                 <div className="col-span-1 text-center">{item.tName}</div>
                                 <div className="col-span-1 text-center">{item.tDesignation}</div>
