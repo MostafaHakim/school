@@ -1,6 +1,9 @@
-const Createsalary = () => {
+import { useParams } from "react-router-dom";
+
+const Createsalary = (tId, tName) => {
+    const { id } = useParams()
     return (
-        <h2>CreateSalary</h2>
+        <h2>{id}</h2>
     );
 }
 
