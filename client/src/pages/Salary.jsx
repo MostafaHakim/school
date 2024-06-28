@@ -10,19 +10,16 @@ const Salary = () => {
                 return res.json()
             })
             .then(data => {
-                setData(data),
-                    setSearch(data)
+                setData(data)
             })
     }, [])
-    const handelChange = (e) => {
-        setSearch((data.filter(item => item.tId.toLowerCase().includes(e.target.value))))
-    }
+
     return (
         <>
             <div className="w-full py-8 ">
                 <form className="grid grid-cols-8 items-center justify-center space-x-3 " action="">
                     <h2 className="col-span-2 text-xl font-semibold">Search TID or Teacher Name:</h2>
-                    <input className="col-span-3 focus:outline-none border-[1px] border-stone-200 p-1" type="text" onChange={handelChange} />
+                    <input className="col-span-3 focus:outline-none border-[1px] border-stone-200 p-1" type="text" onChange={(e) => { setSearch(data.filter(item => item.tId.toLowerCase().includes(even.target.value))) }} />
                     <button className="col-span-1 py-1 px-4 bg-green-400 text-white hover:bg-green-600 transition-all duretion-700 hover:scale-110 ">Search</button>
                 </form>
                 <div className="w-10/12 bg-gray-100 h-screen">
