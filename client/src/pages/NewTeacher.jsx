@@ -33,7 +33,8 @@ const NewTeacher = () => {
         tJoiningDate: joiningDate,
     }
 
-    const handelSubmit = () => {
+    const handelSubmit = (e) => {
+        e.preventDefault()
         fetch('https://school-ebon-eight.vercel.app/api/teacher', {
             method: "post",
             body: JSON.stringify(newTeacher),
