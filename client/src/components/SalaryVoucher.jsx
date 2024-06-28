@@ -4,7 +4,7 @@ const SalaryVoucher = () => {
             <div className="w-2/3 border-2 border-sky-500 py-2 px-4 flex flex-col items-center justify-center">
 
                 <table class="table-fixed w-full border-collapse">
-                    <caption class="caption-top border border-slate-300">
+                    <caption className="caption-top border border-slate-300">
                         <h2 className="text-2xl uppercase">Fazlul haque bidhya Niketon</h2>
                         <span className="text-xl uppercase py-2">Salary Voucher</span>
                     </caption>
