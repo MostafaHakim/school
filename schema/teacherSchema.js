@@ -1,7 +1,10 @@
 const { default: mongoose } = require("mongoose");
 
 const teacherSchema = mongoose.Schema({
-    tId: String,
+    tId: {
+        type: String,
+        required: true
+    },
     tName: String,
     tDesignation: String,
     tShift: String,
