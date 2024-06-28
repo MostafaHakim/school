@@ -10,12 +10,12 @@ const Salary = () => {
                 return res.json()
             })
             .then(data => {
-                setData(data)
-                setSearch(data)
+                setData(data),
+                    setSearch(data)
             })
     }, [])
     const handelChange = (e) => {
-        setSearch((data.filter(item => item.tID.toLowerCase().includes(e.target.value))))
+        setSearch((data.filter(item => item.tId.toLowerCase().includes(e.target.value))))
     }
     return (
         <>
