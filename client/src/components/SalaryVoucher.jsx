@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 
 const SalaryVoucher = () => {
     const { id } = useParams()
-    const [data, setData] = useState()
+    const [data, setData] = useState([])
     useEffect(() => {
         fetch('https://school-ebon-eight.vercel.app/api/teacher')
             .then(res => {
@@ -11,15 +11,23 @@ const SalaryVoucher = () => {
             })
             .then(data => {
                 setData(data)
-                console.log(data)
             })
-    })
+    }, [])
 
 
 
     return (
         <>
             <div className="w-2/3 border-2 border-sky-500 py-2 px-4 flex flex-col items-center justify-center">
+                {data.filter(item => {
+                    if (item.tId == id) {
+                        return item
+                    }
+                }).map(item => {
+                    return (
+                        <h2>{item.tId}</h2>
+                    )
+                })}
                 <table class="table-fixed w-full border-collapse">
                     <caption className="caption-top border border-slate-300">
                         <h2 className="text-2xl uppercase">Fazlul haque bidhya Niketon</h2>
