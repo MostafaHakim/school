@@ -27,6 +27,14 @@ const Teacher = () => {
                     <h2 className="text-xl uppercase bg-sky-400 w-full rounded-t-xl py-1 text-center text-white">New Teacher</h2>
                     <Link className="transition-all ease-linear  duration-300 mt-4 px-8 py-2 text-white bg-green-500 hover:bg-green-700" to="new">Create Teacher</Link>
                 </div>
+                <div className="border-[1px] border-sky-300 flex flex-col items-center justify-start rounded-xl">
+                    <h2 className="text-xl uppercase bg-sky-400 w-full rounded-t-xl py-1 text-center text-white">Late And Absent Count</h2>
+                    <div className="grid grid-cols-3 py-4">
+                        <label className="col-span-1" htmlFor="search">Search:</label>
+                        <input className="col-span-2 focus:outline-none border-[1px] border-slate-200 px-4" type="text" />
+                    </div>
+                    <Link className="transition-all ease-linear  duration-300 mb-2 px-8 py-2 text-white bg-green-500 hover:bg-green-700" to="new">Create Teacher</Link>
+                </div>
             </div>
         </>
     );

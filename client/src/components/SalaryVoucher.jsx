@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import logo from '../img/logo.png'
 
 const SalaryVoucher = () => {
     const { id } = useParams()
@@ -27,8 +28,15 @@ const SalaryVoucher = () => {
                     return (
                         <table class="table-fixed w-full border-collapse">
                             <caption className="caption-top border border-slate-300">
-                                <h2 className="text-2xl uppercase">Fazlul haque bidhya Niketon</h2>
-                                <span className="text-xl uppercase py-2">Salary Voucher</span>
+                                <div className="grid grid-cols-8 w-full">
+                                    <div className="col-span-1 p-4 flex flex-row justify-end">
+                                        <img className="w-16" src={logo} alt="" />
+                                    </div>
+                                    <div className="col-span-6 p-4 ">
+                                        <h2 className="text-2xl uppercase">Fazlul haque bidhya Niketon</h2>
+                                        <span className="text-xl uppercase py-2">Salary Voucher</span>
+                                    </div>
+                                </div>
                             </caption>
                             <thead>
                                 <tr>

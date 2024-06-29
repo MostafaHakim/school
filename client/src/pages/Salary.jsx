@@ -39,7 +39,7 @@ const Salary = () => {
                     </div>
                     {search.map((item, index) => {
                         return (
-                            <div className={`grid grid-cols-5 w-full py-2 uppercase ${(index % 2) = 0 ? "bg-sky-100" : "bg-white"}`} key={index}>
+                            <div className={`grid grid-cols-5 w-full py-2 uppercase ${(item.tId % 2) == 0 ? "bg-sky-100" : "bg-white"}`} key={index}>
                                 <div className="col-span-1 text-center">{item.tId}</div>
                                 <div className="col-span-1 text-center">{item.tName}</div>
                                 <div className="col-span-1 text-center">{item.tDesignation}</div>
