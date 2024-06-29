@@ -48,11 +48,11 @@ const Teacher = () => {
                     </div>
                     <div className="border-[1px] border-sky-300 flex flex-col items-center justify-start rounded-xl">
                         <h2 className="text-xl uppercase bg-sky-400 w-full rounded-t-xl py-1 text-center text-white">Late And Absent Count</h2>
+                        <span className="py-1 text-slate-300">Please Enter TID for counting Late and Absent!!!</span>
                         <div className="grid grid-cols-3 p-4">
                             <label className="col-span-1" htmlFor="search">Search:</label>
-                            <input className="col-span-2 focus:outline-none border-[1px] border-slate-200 px-4" type="text" onChange={handleChange} />
+                            <input className="col-span-2 focus:outline-none border-[1px] border-slate-200 px-4" placeholder="write 301 please!!" type="text" onChange={handleChange} />
                         </div>
-                        <Link className="transition-all ease-linear  duration-300 mb-2 px-8 py-2 text-white bg-green-500 hover:bg-green-700" to="new">Create Teacher</Link>
                     </div>
                 </div>
                 <div className="w-full flex flex-col items-center justify-center">
@@ -62,9 +62,26 @@ const Teacher = () => {
                         }
                     }).map(item => {
                         return (
-                            <div className="w-2/3 p-8 border-[1px] border-sky-400 grid grid-cols-4 gap-4">
+                            <div className="w-10/12 p-8 border-[1px] border-sky-400 grid grid-cols-5 gap-4">
                                 <div className="col-span-1">
                                     <h2 className="py-2">{item.tName}</h2>
+                                </div>
+                                <div className="col-span-1">
+                                    <select className="border-[1px] border-slate-300 focus:outline-none px-4 py-2">
+                                        <option>--Select Month--</option>
+                                        <option>January</option>
+                                        <option>February</option>
+                                        <option>March</option>
+                                        <option>April</option>
+                                        <option>May</option>
+                                        <option>Jun</option>
+                                        <option>July</option>
+                                        <option>August</option>
+                                        <option>September</option>
+                                        <option>Octaber</option>
+                                        <option>November</option>
+                                        <option>December</option>
+                                    </select>
                                 </div>
                                 <div className="col-span-1">
                                     <input type="text" className="border-[1px] border-slate-300 focus:outline-none px-4 py-2" placeholder={`Late in this month`} />
