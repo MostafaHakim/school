@@ -31,6 +31,8 @@ const NewTeacher = () => {
         tShift: shift,
         tSalary: salary,
         tJoiningDate: joiningDate,
+        tLate: 0,
+        tAbsent: 0
     }
 
     const handelSubmit = (e) => {

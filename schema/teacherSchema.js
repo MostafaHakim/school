@@ -25,6 +25,14 @@ const teacherSchema = mongoose.Schema({
         type: String,
         required: true
     },
+    tLate: {
+        type: String,
+        required: true
+    },
+    tAbsent: {
+        type: String,
+        required: true
+    },
 })
 
 module.exports = teacherSchema;

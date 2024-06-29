@@ -16,7 +16,9 @@ const createTeacher = async (req, res) => {
             tDesignation,
             tShift,
             tSalary,
-            tJoiningDate
+            tJoiningDate,
+            tLate,
+            tAbsent
         } = req.body
         const postTeacher = new Teacher({
             tId,
@@ -24,7 +26,9 @@ const createTeacher = async (req, res) => {
             tDesignation,
             tShift,
             tSalary,
-            tJoiningDate
+            tJoiningDate,
+            tLate,
+            tAbsent
         })
         const newTeacher = await postTeacher.save()
         res.status(200).send(newTeacher)
