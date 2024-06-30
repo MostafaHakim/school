@@ -5,6 +5,7 @@ const app = express();
 const cors = require('cors')
 const teacherRouter = require('./routes/teacherRoute')
 const salaryRouter = require('./routes/salaryRoute')
+const mothRouter = require('./routes/monthRoute')
 const MONGODB_URI = process.env.MONGODB_URI
 const PORT = process.env.PORT
 app.use(cors({
@@ -29,6 +30,7 @@ app.get('/', (req, res) => {
 })
 app.use('/api/teacher', teacherRouter)
 app.use('/api/salary', salaryRouter)
+app.use('/api/month', mothRouter)
 
 
 
