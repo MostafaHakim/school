@@ -6,4 +6,6 @@ const router = express.Router();
 
 router.get('/', getAllSalary)
 router.post('/', createSalary)
+
+
 module.exports = router;
