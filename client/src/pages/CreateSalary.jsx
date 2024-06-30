@@ -11,10 +11,11 @@ const Createsalary = () => {
     const [salary, setSalary] = useState('')
     const [newMonth, setNewMonth] = useState([])
     const [month, setMonth] = useState('')
-    const [netSalary, setNetSalary] = useState('')
+    const [netSalary, setNetSalary] = useState(0)
 
-    const calculateSalary = parseInt(salary) - (parseInt(late) >= 2 && shift == 'Day' ? parseInt(late) * 100 : parseInt(late) * 50 + parseInt(salary) / 30 * parseInt(absent))
-
+    const calculateSalaryForDay = parseInt(salary) - (parseInt(late) >= 2 && shift == 'Day' ? parseInt(late) * 100 : 0 + parseInt(salary) / 30 * parseInt(absent))
+    const calculateSalaryForMor = parseInt(salary) - (parseInt(late) >= 2 && shift == 'Morning' ? parseInt(late) * 50 : 0 + parseInt(salary) / 30 * parseInt(absent))
+    console
     useEffect(() => {
         fetch('https://school-ebon-eight.vercel.app/api/teacher')
             .then(res => {
@@ -36,22 +37,7 @@ const Createsalary = () => {
 
     }, [])
 
-    const voucherClick = (e) => {
 
-        e.preventDefault();
-        data.filter(item => {
-            if (item.tId == id) {
-                return item
-            }
-        }).map(data => {
-            setSalary(data.tSalary)
-            setShift(data.tShift)
-        })
-        newMonth.map(item => {
-            setMonth(item.mName)
-        })
-
-    }
     return (
         <div className="w-full flex flex-col bg-slate-100">
             <div className="w-full flex flex-row items-center justify-around mt-10">
@@ -77,13 +63,26 @@ const Createsalary = () => {
                         <div className="w-full p-8 shadow-lg bg-white mt-10 grid grid-cols-2 gap-8">
                             <div className="w-full col-span-1">
                                 <div className="w-full py-2 px-4 text-center bg-orange-500 text-white uppercase">coming monthly salary</div>
-                                {newMonth.map(item => {
+                                {newMonth.map((item, i) => {
                                     return (
                                         <div className="flex flex-row items-center justify-between px-4 py-2">
                                             <div className="text-sm font-semibold px-4 y-1 bg-orange-600 text-white rounded-full shadow-lg">Month Name</div>
-                                            <span className="text-sm font-semibold px-4 y-1 text-red border-[1px] border-red rounded-full shadow-lg" id="mName" >{item.mName}</span>
+                                            <span className="text-sm font-semibold px-4 y-1 text-red border-[1px] border-red rounded-full shadow-lg" id="mName">{item.mName}</span>
                                             <button className="text-sm font-semibold px-4 y-1 bg-sky-600 text-white rounded-xl shadow-lg"
-                                                onClick={voucherClick}>Create</button>
+                                                onClick={(e) => {
+                                                    e.preventDefault();
+                                                    setMonth(item.mName)
+                                                    console.log(item.mName)
+                                                    data.filter(item => {
+                                                        if (item.tId == id) {
+                                                            return item
+                                                        }
+                                                    }).map(data => {
+                                                        setSalary(data.tSalary)
+                                                        setShift(data.tShift)
+                                                    })
+                                                    setNetSalary(0)
+                                                }}>Create</button>
                                         </div>
                                     )
                                 })}
@@ -113,7 +112,8 @@ const Createsalary = () => {
                                         <span className="col-span-1 text-center text-sm font-semibold px-4 y-1 bg-orange-600 text-white rounded-full shadow-lg">{netSalary}</span>
                                     </div>
                                 </div>
-                                <button className="w-full text-center text-sm font-semibold px-4 y-1 text-green-600 border-[1px] border-green-600 rounded-full shadow-lg hover:text-white hover:bg-green-600" onClick={(e) => { e.preventDefault(); setNetSalary(Math.ceil(calculateSalary)) }}>Calculate</button>
+
+                                <button className="w-full text-center text-sm font-semibold px-4 y-1 text-green-600 border-[1px] border-green-600 rounded-full shadow-lg hover:text-white hover:bg-green-600" onClick={(e) => { e.preventDefault(); setNetSalary((shift == 'Day') ? Math.ceil(calculateSalaryForDay) : Math.ceil(calculateSalaryForMor)) }}>Calculate</button>
                                 <button className="w-full text-center text-sm font-semibold px-4 y-1 text-orange-600 border-[1px] border-orange-600 rounded-full shadow-lg hover:text-white hover:bg-orange-600">Create Salary</button>
                             </div>
                         </div>
