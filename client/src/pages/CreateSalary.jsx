@@ -5,13 +5,15 @@ import { Link, useParams } from "react-router-dom";
 const Createsalary = () => {
     const { id } = useParams()
     const [data, setData] = useState([])
+    const [shift, setShift] = useState('')
     const [late, setLate] = useState('')
     const [absent, setAbsent] = useState('')
     const [salary, setSalary] = useState('')
-    const [newMonth, setNewMonth] = useState('')
+    const [newMonth, setNewMonth] = useState([])
     const [month, setMonth] = useState('')
     const [netSalary, setNetSalary] = useState('')
 
+    const calculateSalary = parseInt(salary) - (parseInt(late) >= 2 && shift == 'Day' ? parseInt(late) * 100 : parseInt(late) * 50 + parseInt(salary) / 30 * parseInt(absent))
 
     useEffect(() => {
         fetch('https://school-ebon-eight.vercel.app/api/teacher')
@@ -23,16 +25,31 @@ const Createsalary = () => {
             });
     }, [])
 
+    useEffect(() => {
+        fetch('https://school-ebon-eight.vercel.app/api/month')
+            .then(res => {
+                return res.json()
+            })
+            .then(data => {
+                setNewMonth(data)
+            });
 
+    }, [])
 
-    const handelClick = (e) => {
-        e.preventDefault()
+    const voucherClick = (e) => {
 
-        data.map(item => {
-            setSalary(item.tSalary)
+        e.preventDefault();
+        data.filter(item => {
+            if (item.tId == id) {
+                return item
+            }
+        }).map(data => {
+            setSalary(data.tSalary)
+            setShift(data.tShift)
         })
-
-
+        newMonth.map(item => {
+            setMonth(item.mName)
+        })
 
     }
     return (
@@ -60,66 +77,17 @@ const Createsalary = () => {
                         <div className="w-full p-8 shadow-lg bg-white mt-10 grid grid-cols-2 gap-8">
                             <div className="w-full col-span-1">
                                 <div className="w-full py-2 px-4 text-center bg-orange-500 text-white uppercase">coming monthly salary</div>
-                                <div className="flex flex-row items-center justify-between px-4 py-2">
-                                    <div className="text-sm font-semibold px-4 y-1 bg-orange-600 text-white rounded-full shadow-lg">Month Name</div>
-                                    <span className="text-sm font-semibold px-4 y-1 text-red border-[1px] border-red rounded-full shadow-lg" id="mName">January</span>
-                                    <button className="text-sm font-semibold px-4 y-1 bg-sky-600 text-white rounded-xl shadow-lg" onClick={handelClick}>Create</button>
-                                </div>
-                                <div className="flex flex-row items-center justify-between px-4 py-2">
-                                    <div className="text-sm font-semibold px-4 y-1 bg-orange-600 text-white rounded-full shadow-lg">Month Name</div>
-                                    <div className="text-sm font-semibold px-4 y-1 text-red border-[1px] border-red rounded-full shadow-lg">February</div>
-                                    <button className="text-sm font-semibold px-4 y-1 bg-sky-600 text-white rounded-xl shadow-lg">Create</button>
-                                </div>
-                                <div className="flex flex-row items-center justify-between px-4 py-2">
-                                    <div className="text-sm font-semibold px-4 y-1 bg-orange-600 text-white rounded-full shadow-lg">Month Name</div>
-                                    <div className="text-sm font-semibold px-4 y-1 text-red border-[1px] border-red rounded-full shadow-lg">March</div>
-                                    <button className="text-sm font-semibold px-4 y-1 bg-sky-600 text-white rounded-xl shadow-lg">Create</button>
-                                </div>
-                                <div className="flex flex-row items-center justify-between px-4 py-2">
-                                    <div className="text-sm font-semibold px-4 y-1 bg-orange-600 text-white rounded-full shadow-lg">Month Name</div>
-                                    <div className="text-sm font-semibold px-4 y-1 text-red border-[1px] border-red rounded-full shadow-lg">April</div>
-                                    <button className="text-sm font-semibold px-4 y-1 bg-sky-600 text-white rounded-xl shadow-lg">Create</button>
-                                </div>
-                                <div className="flex flex-row items-center justify-between px-4 py-2">
-                                    <div className="text-sm font-semibold px-4 y-1 bg-orange-600 text-white rounded-full shadow-lg">Month Name</div>
-                                    <div className="text-sm font-semibold px-4 y-1 text-red border-[1px] border-red rounded-full shadow-lg">May</div>
-                                    <button className="text-sm font-semibold px-4 y-1 bg-sky-600 text-white rounded-xl shadow-lg">Create</button>
-                                </div>
-                                <div className="flex flex-row items-center justify-between px-4 py-2">
-                                    <div className="text-sm font-semibold px-4 y-1 bg-orange-600 text-white rounded-full shadow-lg">Month Name</div>
-                                    <div className="text-sm font-semibold px-4 y-1 text-red border-[1px] border-red rounded-full shadow-lg">June</div>
-                                    <button className="text-sm font-semibold px-4 y-1 bg-sky-600 text-white rounded-xl shadow-lg">Create</button>
-                                </div>
-                                <div className="flex flex-row items-center justify-between px-4 py-2">
-                                    <div className="text-sm font-semibold px-4 y-1 bg-orange-600 text-white rounded-full shadow-lg">Month Name</div>
-                                    <div className="text-sm font-semibold px-4 y-1 text-red border-[1px] border-red rounded-full shadow-lg">July</div>
-                                    <button className="text-sm font-semibold px-4 y-1 bg-sky-600 text-white rounded-xl shadow-lg">Create</button>
-                                </div>
-                                <div className="flex flex-row items-center justify-between px-4 py-2">
-                                    <div className="text-sm font-semibold px-4 y-1 bg-orange-600 text-white rounded-full shadow-lg">Month Name</div>
-                                    <div className="text-sm font-semibold px-4 y-1 text-red border-[1px] border-red rounded-full shadow-lg">August</div>
-                                    <button className="text-sm font-semibold px-4 y-1 bg-sky-600 text-white rounded-xl shadow-lg">Create</button>
-                                </div>
-                                <div className="flex flex-row items-center justify-between px-4 py-2">
-                                    <div className="text-sm font-semibold px-4 y-1 bg-orange-600 text-white rounded-full shadow-lg">Month Name</div>
-                                    <div className="text-sm font-semibold px-4 y-1 text-red border-[1px] border-red rounded-full shadow-lg">september</div>
-                                    <button className="text-sm font-semibold px-4 y-1 bg-sky-600 text-white rounded-xl shadow-lg">Create</button>
-                                </div>
-                                <div className="flex flex-row items-center justify-between px-4 py-2">
-                                    <div className="text-sm font-semibold px-4 y-1 bg-orange-600 text-white rounded-full shadow-lg">Month Name</div>
-                                    <div className="text-sm font-semibold px-4 y-1 text-red border-[1px] border-red rounded-full shadow-lg">October</div>
-                                    <button className="text-sm font-semibold px-4 y-1 bg-sky-600 text-white rounded-xl shadow-lg">Create</button>
-                                </div>
-                                <div className="flex flex-row items-center justify-between px-4 py-2">
-                                    <div className="text-sm font-semibold px-4 y-1 bg-orange-600 text-white rounded-full shadow-lg">Month Name</div>
-                                    <div className="text-sm font-semibold px-4 y-1 text-red border-[1px] border-red rounded-full shadow-lg">November</div>
-                                    <button className="text-sm font-semibold px-4 y-1 bg-sky-600 text-white rounded-xl shadow-lg">Create</button>
-                                </div>
-                                <div className="flex flex-row items-center justify-between px-4 py-2">
-                                    <div className="text-sm font-semibold px-4 y-1 bg-orange-600 text-white rounded-full shadow-lg">Month Name</div>
-                                    <div className="text-sm font-semibold px-4 y-1 text-red border-[1px] border-red rounded-full shadow-lg">December</div>
-                                    <button className="text-sm font-semibold px-4 y-1 bg-sky-600 text-white rounded-xl shadow-lg">Create</button>
-                                </div>
+                                {newMonth.map(item => {
+                                    return (
+                                        <div className="flex flex-row items-center justify-between px-4 py-2">
+                                            <div className="text-sm font-semibold px-4 y-1 bg-orange-600 text-white rounded-full shadow-lg">Month Name</div>
+                                            <span className="text-sm font-semibold px-4 y-1 text-red border-[1px] border-red rounded-full shadow-lg" id="mName" >{item.mName}</span>
+                                            <button className="text-sm font-semibold px-4 y-1 bg-sky-600 text-white rounded-xl shadow-lg"
+                                                onClick={voucherClick}>Create</button>
+                                        </div>
+                                    )
+                                })}
+
                             </div>
                             <div className="col-span-1">
                                 <div className="w-full py-2 px-4 text-center bg-red-500 text-white uppercase">Salary Creator Form</div>
@@ -142,9 +110,10 @@ const Createsalary = () => {
                                     </div>
                                     <div className="grid grid-cols-3 py-2 items-center gap-4">
                                         <label className="col-span-1 text-center text-sm font-semibold px-4 y-1 text-orange-600 border-[1px] border-orange-600 rounded-full shadow-lg" htmlFor="">Net Salary</label>
-                                        <span className="col-span-1 text-center text-sm font-semibold px-4 y-1 bg-orange-600 text-white rounded-full shadow-lg" onChange={(e) => { setNetSalary(e.target.value) }} >{netSalary}</span>
+                                        <span className="col-span-1 text-center text-sm font-semibold px-4 y-1 bg-orange-600 text-white rounded-full shadow-lg">{netSalary}</span>
                                     </div>
                                 </div>
+                                <button className="w-full text-center text-sm font-semibold px-4 y-1 text-green-600 border-[1px] border-green-600 rounded-full shadow-lg hover:text-white hover:bg-green-600" onClick={(e) => { e.preventDefault(); setNetSalary(Math.ceil(calculateSalary)) }}>Calculate</button>
                                 <button className="w-full text-center text-sm font-semibold px-4 y-1 text-orange-600 border-[1px] border-orange-600 rounded-full shadow-lg hover:text-white hover:bg-orange-600">Create Salary</button>
                             </div>
                         </div>
