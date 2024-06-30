@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const app = express();
 const cors = require('cors')
 const teacherRouter = require('./routes/teacherRoute')
+const salaryRouter = require('./routes/salaryRoute')
 const MONGODB_URI = process.env.MONGODB_URI
 const PORT = process.env.PORT
 app.use(cors({
@@ -27,6 +28,7 @@ app.get('/', (req, res) => {
     res.send("Welcome")
 })
 app.use('/api/teacher', teacherRouter)
+app.use('/api/salary', salaryRouter)
 
 
 

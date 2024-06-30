@@ -1,6 +1,6 @@
-const { default: mongoose } = require("mongoose");
+const mongoose = require('mongoose')
 
-const teacherSchema = mongoose.Schema({
+const salarySchema = mongoose.Schema({
     tId: {
         type: String,
         required: true
@@ -24,7 +24,26 @@ const teacherSchema = mongoose.Schema({
     tSalary: {
         type: String,
         required: true
-    }
+    },
+    tSmonth: {
+        type: String,
+        required: true
+    },
+    tLate: {
+        type: String,
+        required: true
+    },
+    tAbsent: {
+        type: String,
+        required: true
+    },
+    tNetSalary:
+    {
+        type: String,
+        required: true
+    },
+
 })
 
-module.exports = teacherSchema;
+
+module.exports = salarySchema;
