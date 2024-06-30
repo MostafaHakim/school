@@ -1,5 +1,6 @@
 import { NavLink } from "react-router-dom";
 
+
 const Navbar = () => {
     return (
         <div className="w-full flex flex-row items-center justify-between px-10 bg-sky-600 text-white">

@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
+import MonthList from "../components/MonthList"
+
 
 const Createsalary = () => {
     const { id } = useParams()
@@ -18,60 +20,57 @@ const Createsalary = () => {
 
 
     return (
-        <div className="w-full flex flex-col">
+        <div className="w-full flex flex-col bg-slate-100">
+            <div className="w-full flex flex-row items-center justify-around mt-10">
+                <h2 className="text-xl py-2 px-8 rounded-full shadow-xl bg-white">FHB</h2>
+                <span className="text-xl py-2 px-8 rounded-full shadow-xl bg-white">Teacher's Details</span>
+            </div>
             {data.filter(item => {
                 if (item.tId == id) {
                     return item
                 }
             }).map(item => {
                 return (
-                    <div className="m-20 w-10/12 flex flex-col border-[1px] border-sky-400 text-xl  space-y-4 shadow-xl" key={item._id}>
-                        <h2 className="w-full text-center text-2xl uppercase underline underline-offset-2 pb-2 bg-green-500 text-white">Salary of the month of Jun 2024</h2>
-                        <div className="px-4">
-                            <div className="grid grid-cols-4 w-full">
-                                <label className="col-sapn-1" htmlFor="tId">TID</label>
-                                <span className="col-sapn-3">{item.tId}</span>
-                            </div>
-                            <div className="grid grid-cols-4 w-full">
-                                <label className="col-sapn-1" htmlFor="tId">Name</label>
-                                <span className="col-sapn-3">{item.tName}</span>
-                            </div>
-                            <div className="grid grid-cols-4 w-full">
-                                <label className="col-sapn-1" htmlFor="tId">Designation</label>
-                                <span className="col-sapn-3">{item.tDesignation}</span>
-                            </div>
-                            <div className="grid grid-cols-4 w-full">
-                                <label className="col-sapn-1" htmlFor="tId">Shift</label>
-                                <span className="col-sapn-3">{item.tShift}</span>
-                            </div>
-                            <div className="grid grid-cols-4 w-full">
-                                <label className="col-sapn-1" htmlFor="tId">Salary</label>
-                                <span className="col-sapn-3">{item.tSalary}</span>
-                            </div>
-                            <div className="grid grid-cols-4 w-full">
-                                <label className="col-sapn-1" htmlFor="tId">Late</label>
-                                <span className="col-sapn-3">{item.tLate}</span>
-                            </div>
-                            <div className="grid grid-cols-4 w-full">
-                                <label className="col-sapn-1" htmlFor="tId">Absent</label>
-                                <span className="col-sapn-3">{item.tAbsent}</span>
-                            </div>
-                            <div className="grid grid-cols-4 w-full">
-                                <label className="col-sapn-1" htmlFor="tId">Diduction</label>
-                                <span className="col-sapn-3">{item.tDiduction}</span>
-                            </div>
-                            <div className="grid grid-cols-4 w-full">
-                                <label className="col-sapn-1" htmlFor="tId">Addition</label>
-                                <input className="col-sapn-3" type="text" placeholder="00" />
-                            </div>
-                            <div className="grid grid-cols-4 w-full">
-                                <label className="col-sapn-1" htmlFor="tId">Net Salary</label>
-                                <span className="col-sapn-3">Net Salary</span>
+                    <div className="mx-20 my-10 w-10/12 flex flex-col border-[1px] text-xl shadow-xl" key={item._id}>
+                        <div className="p-8 shadow-lg bg-white w-full">
+                            <span className="text-semibold text-xl border-b-2 border-slate-500">Teacher Information</span>
+                            <h2 className="text-4xl pt-4 pb-2">{item.tName}</h2>
+                            <div className="flex flex-row items-center justify-start space-x-2">
+                                <span className="text-sm font-semibold px-4 y-1 bg-red-600 text-white rounded-full shadow-lg">{item.tDesignation}</span>
+                                <span className="text-sm font-semibold px-4 y-1 bg-red-600 text-white rounded-full shadow-lg">{item.tId}</span>
+                                <span className="text-sm font-semibold px-4 y-1 bg-red-600 text-white rounded-full shadow-lg">{item.tShift}</span>
                             </div>
                         </div>
-                        <div className="w-full group">
-                            <button className="transition-all ease-linear duration-700  px-4 py-1 bg-sky-500 text-white shadow-lg hover:bg-pink-700  w-1/2 ">Calculate</button>
-                            <button className="transition-all ease-linear duration-700 px-4 py-1 bg-pink-500 text-white shadow-lg hover:bg-pink-700 w-1/2"><Link to={`${id}`} >Create Voucher</Link></button>
+                        <div className="w-full p-8 shadow-lg bg-white mt-10 grid grid-cols-2 gap-8">
+                            <MonthList />
+                            <div className="col-span-1">
+                                <div className="w-full py-2 px-4 text-center bg-red-500 text-white uppercase">Salary Creator Form</div>
+                                <div className="flex flex-col">
+                                    <div className="grid grid-cols-3 py-2 items-center gap-4">
+                                        <label className="col-span-1 text-center text-sm font-semibold px-4 y-1 text-orange-600 border-[1px] border-orange-600 rounded-full shadow-lg" htmlFor="">Salary</label>
+                                        <span className="col-span-1 text-center text-sm font-semibold px-4 y-1 bg-orange-600 text-white rounded-full shadow-lg">{`TK ${item.tSalary}`}</span>
+                                    </div>
+                                    <div className="grid grid-cols-3 py-2 items-center gap-4">
+                                        <label className="col-span-1 text-center text-sm font-semibold px-4 y-1 text-orange-600 border-[1px] border-orange-600 rounded-full shadow-lg" htmlFor="">Late</label>
+                                        <input type="text" className=" focus:outline-none border-[1px] border-orange-600 h-[22px] rounded-full shadow-lg px-8 text-sm font-semibold text-center" />
+                                    </div>
+                                    <div className="grid grid-cols-3 py-2 items-center gap-4">
+                                        <label className="col-span-1 text-center text-sm font-semibold px-4 y-1 text-orange-600 border-[1px] border-orange-600 rounded-full shadow-lg" htmlFor="">Absent</label>
+                                        <input type="text" className=" focus:outline-none border-[1px] border-orange-600 h-[22px] rounded-full shadow-lg px-8 text-sm font-semibold text-center" />
+                                    </div>
+                                    <div className="grid grid-cols-3 py-2 items-center gap-4">
+                                        <label className="col-span-1 text-center text-sm font-semibold px-4 y-1 text-orange-600 border-[1px] border-orange-600 rounded-full shadow-lg" htmlFor="">Net Salary</label>
+                                        <span className="col-span-1 text-center text-sm font-semibold px-4 y-1 bg-orange-600 text-white rounded-full shadow-lg">Net Salary</span>
+                                    </div>
+                                </div>
+                                <button className="w-full text-center text-sm font-semibold px-4 y-1 text-orange-600 border-[1px] border-orange-600 rounded-full shadow-lg hover:text-white hover:bg-orange-600">Create Salary</button>
+                            </div>
+                        </div>
+                        <div>
+                            <div className="w-full">
+                                <div className="w-full py-2 px-4 text-center bg-green-500 text-white uppercase">Created Salary</div>
+
+                            </div>
                         </div>
                     </div>
                 )
