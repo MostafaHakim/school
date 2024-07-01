@@ -13,8 +13,8 @@ const Createsalary = () => {
     const [month, setMonth] = useState('')
     const [netSalary, setNetSalary] = useState(0)
 
-    const calculateSalaryForDay = parseInt(salary) - (parseInt(late) >= 2 && shift == 'Day' ? (parseInt(late) * 100) : 0 + parseInt(salary) / 30 * parseInt(absent))
-    const calculateSalaryForMor = parseInt(salary) - (parseInt(late) >= 2 && shift == 'Morning' ? (parseInt(late) * 50) : 0 + parseInt(salary) / 30 * parseInt(absent))
+    const calculateSalaryForDay = parseInt(salary) - ((parseInt(late) >= 2 && shift == 'Day' ? (parseInt(late) * 100) : 0 + parseInt(salary) / 30 * parseInt(absent)))
+    const calculateSalaryForMor = parseInt(salary) - ((parseInt(late) >= 2 && shift == 'Morning' ? (parseInt(late) * 50) : 0 + parseInt(salary) / 30 * parseInt(absent)))
     console
     useEffect(() => {
         fetch('https://school-ebon-eight.vercel.app/api/teacher')
