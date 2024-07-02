@@ -93,15 +93,15 @@ const Createsalary = () => {
                         <div className="w-full p-8 shadow-lg bg-white mt-10 grid grid-cols-2 gap-8">
                             <div className="w-full col-span-1">
                                 <div className="w-full py-2 px-4 text-center bg-orange-500 text-white uppercase">coming monthly salary</div>
-                                {newMonth.map((item, i) => {
+                                {newMonth.map((item) => {
                                     return (
                                         <div className="flex flex-row items-center justify-between px-4 py-2">
                                             <div className="text-sm font-semibold px-4 y-1 bg-orange-600 text-white rounded-full shadow-lg">Month Name</div>
-                                            <span className="text-sm font-semibold px-4 y-1 text-red border-[1px] border-red rounded-full shadow-lg" id="mName">{item.mName}</span>
+                                            <span className="text-sm font-semibold px-4 y-1 text-red border-[1px] border-red rounded-full shadow-lg" id="mName" key={item._id}>{item.mName}</span>
                                             <button className="text-sm font-semibold px-4 y-1 bg-sky-600 text-white rounded-xl shadow-lg"
                                                 onClick={(e) => {
                                                     e.preventDefault();
-                                                    console.log(item.mName)
+                                                    setMonth(item.mName)
                                                     data.filter(item => {
                                                         if (item.tId == id) {
                                                             return item
@@ -112,6 +112,7 @@ const Createsalary = () => {
                                                         setName(data.tName)
                                                         setDesignation(data.tDesignation)
                                                         setJoiningDate(data.tJoiningDate)
+                                                        
                                                     })
                                                     setNetSalary(0)
                                                 }}>Create</button>
@@ -152,7 +153,7 @@ const Createsalary = () => {
                         <div>
                             <div className="w-full">
                                 <div className="w-full py-2 px-4 text-center bg-green-500 text-white uppercase">Created Salary</div>
-                                    
+
                             </div>
                         </div>
                     </div>
