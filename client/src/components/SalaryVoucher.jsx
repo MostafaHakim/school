@@ -6,7 +6,7 @@ const SalaryVoucher = () => {
     const { id } = useParams()
     const [data, setData] = useState([])
     useEffect(() => {
-        fetch('https://school-ebon-eight.vercel.app/api/teacher')
+        fetch('https://school-ebon-eight.vercel.app/api/salary')
             .then(res => {
                 return res.json()
             })
@@ -19,14 +19,14 @@ const SalaryVoucher = () => {
 
     return (
         <>
-            <div className="w-2/3 border-2 border-sky-500 py-2 px-4 flex flex-col items-center justify-center mt-20">
+            <div className="w-2/3 border-2 border-sky-500 py-2 px-4 flex flex-col items-center justify-center m-auto mt-20">
                 {data.filter(item => {
                     if (item.tId == id) {
                         return item
                     }
                 }).map(item => {
                     return (
-                        <table class="table-fixed w-full border-collapse">
+                        <table class="table-fixed w-full border-collapse" key={item.tId}>
                             <caption className="caption-top border border-slate-300">
                                 <div className="grid grid-cols-8 w-full">
                                     <div className="col-span-1 p-4 flex flex-row justify-end">
@@ -34,7 +34,7 @@ const SalaryVoucher = () => {
                                     </div>
                                     <div className="col-span-6 p-4 ">
                                         <h2 className="text-2xl uppercase">Fazlul haque bidhya Niketon</h2>
-                                        <span className="text-xl uppercase py-2">Salary Voucher</span>
+                                        <span className="text-xl uppercase py-2">{`Salary Voucher ${item.tSmonth}`}</span>
                                     </div>
                                 </div>
                             </caption>
@@ -57,23 +57,23 @@ const SalaryVoucher = () => {
                                     <td className="border border-slate-300">Designation</td>
                                     <td className="border border-slate-300">{item.tDesignation}</td>
                                     <td className="border border-slate-300">Late</td>
-                                    <td className="border border-slate-300">02</td>
+                                    <td className="border border-slate-300">{item.tLate}</td>
                                 </tr>
                                 <tr>
                                     <td className="border border-slate-300">Salary</td>
                                     <td className="border border-slate-300">{item.tSalary}</td>
                                     <td className="border border-slate-300">Absent</td>
-                                    <td className="border border-slate-300">02</td>
+                                    <td className="border border-slate-300">{item.tAbsent}</td>
                                 </tr>
                                 <tr>
                                     <td className="border border-slate-300">Addition</td>
-                                    <td className="border border-slate-300">1000</td>
+                                    <td className="border border-slate-300">{item.tAddition}</td>
                                     <td className="border border-slate-300">Diduction</td>
-                                    <td className="border border-slate-300">1500</td>
+                                    <td className="border border-slate-300">{item.Diduction}</td>
                                 </tr>
                                 <tr>
                                     <td className="border border-slate-300">Net Salary</td>
-                                    <td className="border border-slate-300">14500</td>
+                                    <td className="border border-slate-300">{item.netSalary}</td>
                                     <td className="border border-slate-300">In Word</td>
                                     <td className="border border-slate-300">14500</td>
                                 </tr>
