@@ -152,7 +152,7 @@ const Createsalary = () => {
                         <div>
                             <div className="w-full">
                                 <div className="w-full py-2 px-4 text-center bg-green-500 text-white uppercase">Created Salary</div>
-
+                                    
                             </div>
                         </div>
                     </div>
