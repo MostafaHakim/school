@@ -82,7 +82,7 @@ const NewTeacher = () => {
                         </div>
                         <div className="w-full grid grid-cols-5">
                             <label className="col-span-2" htmlFor="tId">Joining Date :</label>
-                            <input className="col-span-3 focus:outline-none border-[1px] border-slate-300 px-4 placeholder:text-sm" placeholder="Please Enter Joining Date!!!" type="text" onChange={(e) => { setJoiningDate(e.target.value) }} />
+                            <input className="col-span-3 focus:outline-none border-[1px] border-slate-300 px-4 placeholder:text-sm" placeholder="Please Enter Joining Date!!!" type="date" onChange={(e) => { setJoiningDate(e.target.value) }} />
 
                         </div>
                         <div className="w-full grid grid-cols-5">

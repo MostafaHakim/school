@@ -13,6 +13,12 @@ const Createsalary = () => {
     const [month, setMonth] = useState('')
     const [netSalary, setNetSalary] = useState(0)
 
+
+    // ================================= input voucher data to new table from teacher table hook================
+    const [name,setName]=useState('')
+    const [designation,setDesignation] = useState('')
+    const [joiningDate,setJoiningDate] = useState('')
+
     const calculateSalaryForDay = parseInt(salary) - (((parseInt(late) >= 2 && shift == 'Day' ? (parseInt(late) * 100) : 0) + parseInt(salary) / 30 * parseInt(absent)))
     const calculateSalaryForMor = parseInt(salary) - (((parseInt(late) >= 2 && shift == 'Morning' ? (parseInt(late) * 50) : 0) + parseInt(salary) / 30 * parseInt(absent)))
     console
@@ -37,6 +43,29 @@ const Createsalary = () => {
 
     }, [])
 
+   
+    const salaryVoucher={
+            tId:id,
+            tName:name,
+            tDesignation:designation,
+            tShift:shift,
+            tJoiningDate:joiningDate,
+            tSalary:salary,
+            tSmonth:month,
+            tLate:late,
+            tAbsent:absent,
+            tNetSalary:netSalary
+    }
+ const salaryClick = async(e) =>{
+    e.preventDefault()
+    await fetch('https://school-ebon-eight.vercel.app/api/salary',{
+        method:"POST",
+        body:JSON.stringify(salaryVoucher),
+        headers:{
+            "Content-Type":"application/json"
+        }
+    })
+ }
 
     return (
         <div className="w-full flex flex-col bg-slate-100">
@@ -58,6 +87,7 @@ const Createsalary = () => {
                                 <span className="text-sm font-semibold px-4 y-1 bg-red-600 text-white rounded-full shadow-lg">{item.tDesignation}</span>
                                 <span className="text-sm font-semibold px-4 y-1 bg-red-600 text-white rounded-full shadow-lg">{item.tId}</span>
                                 <span className="text-sm font-semibold px-4 y-1 bg-red-600 text-white rounded-full shadow-lg">{item.tShift}</span>
+                                <span className="text-sm font-semibold px-4 y-1 bg-red-600 text-white rounded-full shadow-lg">{item.tJoiningDate}</span>
                             </div>
                         </div>
                         <div className="w-full p-8 shadow-lg bg-white mt-10 grid grid-cols-2 gap-8">
@@ -71,7 +101,6 @@ const Createsalary = () => {
                                             <button className="text-sm font-semibold px-4 y-1 bg-sky-600 text-white rounded-xl shadow-lg"
                                                 onClick={(e) => {
                                                     e.preventDefault();
-                                                    setMonth(item.mName)
                                                     console.log(item.mName)
                                                     data.filter(item => {
                                                         if (item.tId == id) {
@@ -80,6 +109,9 @@ const Createsalary = () => {
                                                     }).map(data => {
                                                         setSalary(data.tSalary)
                                                         setShift(data.tShift)
+                                                        setName(data.tName)
+                                                        setDesignation(data.tDesignation)
+                                                        setJoiningDate(data.tJoiningDate)
                                                     })
                                                     setNetSalary(0)
                                                 }}>Create</button>
@@ -114,7 +146,7 @@ const Createsalary = () => {
                                 </div>
 
                                 <button className="w-full text-center text-sm font-semibold px-4 y-1 text-green-600 border-[1px] border-green-600 rounded-full shadow-lg hover:text-white hover:bg-green-600" onClick={(e) => { e.preventDefault(); setNetSalary((shift == 'Day') ? Math.ceil(calculateSalaryForDay) : Math.ceil(calculateSalaryForMor)) }}>Calculate</button>
-                                <button className="w-full text-center text-sm font-semibold px-4 y-1 text-orange-600 border-[1px] border-orange-600 rounded-full shadow-lg hover:text-white hover:bg-orange-600">Create Salary</button>
+                                <button className="w-full text-center text-sm font-semibold px-4 y-1 text-orange-600 border-[1px] border-orange-600 rounded-full shadow-lg hover:text-white hover:bg-orange-600" onClick={salaryClick}>Create Salary</button>
                             </div>
                         </div>
                         <div>
