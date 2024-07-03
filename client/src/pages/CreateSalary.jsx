@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import SalaryVoucher from '../components/SalaryVoucher'
+
 
 
 const Createsalary = () => {
@@ -22,6 +22,7 @@ const Createsalary = () => {
     const [voucher,setVoucher] = useState([])
     const [diduction,setDiduction] = useState([])
     const [toggle,setToggle] = useState(false)
+    const [addition,setAddition] = useState('')
   
 
     const calculateSalaryForDay = parseInt(salary) - (((parseInt(late) >= 2 && shift == 'Day' ? (parseInt(late) * 100) : 0) + parseInt(salary) / 30 * parseInt(absent)))
@@ -221,7 +222,7 @@ const handelAddition = (e) =>{
                                     <span className="px-4 py-1 rounded-xl text-white bg-green-500">Late</span>
                                     <span className="px-4 py-1 rounded-xl text-white bg-green-500">absent</span>
                                     <span className="px-4 py-1 rounded-xl text-white bg-green-500">diduction</span>
-                                    <input type="text" className="px-4 py-1 rounded-xl text-green-500 bg-white placeholder:text-xs focus:outline-none border-[1px] border-green-500" placeholder="Addition"/>
+                                    <input type="text" className="px-4 py-1 rounded-xl text-green-500 bg-white placeholder:text-xs focus:outline-none border-[1px] border-green-500" placeholder="Addition" onChange={(e)=>{setAddition(e.target.value)}}/>
                                     <span className="px-4 py-1 rounded-xl text-white bg-green-500">NetSalry</span>
                                     {/* tId:id,
                                         tName:name,

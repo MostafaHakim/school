@@ -46,5 +46,12 @@ const createSalary = async (req, res) => {
     }
 }
 
+const updateSalary = async (req,res) =>{
+    const {tId , tAddition} = req.body;
+    const updateOne= await Salary.findOneAndUpdate({tId},{$set:{
+        tAddition,
+    }})
+   res.status(201).json(updateOne)
 
-module.exports = { getAllSalary, createSalary }
+}
+module.exports = { getAllSalary, createSalary,updateSalary }
