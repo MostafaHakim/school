@@ -37,6 +37,11 @@ const salarySchema = mongoose.Schema({
         type: String,
         required: true
     },
+    tDiduction:
+    {
+        type: String,
+        required: true
+    },
     tNetSalary:
     {
         type: String,

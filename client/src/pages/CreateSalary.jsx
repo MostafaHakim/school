@@ -20,6 +20,8 @@ const Createsalary = () => {
     const [designation,setDesignation] = useState('')
     const [joiningDate,setJoiningDate] = useState('')
     const [voucher,setVoucher] = useState([])
+    const [diduction,setDiduction] = useState([])
+  
 
     const calculateSalaryForDay = parseInt(salary) - (((parseInt(late) >= 2 && shift == 'Day' ? (parseInt(late) * 100) : 0) + parseInt(salary) / 30 * parseInt(absent)))
     const calculateSalaryForMor = parseInt(salary) - (((parseInt(late) >= 2 && shift == 'Morning' ? (parseInt(late) * 50) : 0) + parseInt(salary) / 30 * parseInt(absent)))
@@ -56,6 +58,7 @@ const Createsalary = () => {
             tSmonth:month,
             tLate:late,
             tAbsent:absent,
+            tDiduction:diduction,
             tNetSalary:netSalary
     }
  const salaryClick = async(e) =>{
@@ -79,7 +82,12 @@ const Createsalary = () => {
     })
 },[])
 
+const calculateSalaryClick =(e) => { 
+    e.preventDefault(); 
+    setNetSalary((shift == 'Day') ? Math.ceil(calculateSalaryForDay) : Math.ceil(calculateSalaryForMor))
+    setDiduction((shift == 'Day') ? salary - Math.ceil(calculateSalaryForDay) : salary -  Math.ceil(calculateSalaryForMor))
 
+ }
 
 
     return (
@@ -156,12 +164,16 @@ const Createsalary = () => {
                                         <input type="text" className=" focus:outline-none border-[1px] border-orange-600 h-[22px] rounded-full shadow-lg px-8 text-sm font-semibold text-center" onChange={(e) => { setAbsent(e.target.value) }} />
                                     </div>
                                     <div className="grid grid-cols-3 py-2 items-center gap-4">
+                                        <label className="col-span-1 text-center text-sm font-semibold px-4 y-1 text-orange-600 border-[1px] border-orange-600 rounded-full shadow-lg" htmlFor="">Diduction</label>
+                                        <span className="col-span-1 text-center text-sm font-semibold px-4 y-1 bg-orange-600 text-white rounded-full shadow-lg">{diduction}</span>
+                                    </div>
+                                    <div className="grid grid-cols-3 py-2 items-center gap-4">
                                         <label className="col-span-1 text-center text-sm font-semibold px-4 y-1 text-orange-600 border-[1px] border-orange-600 rounded-full shadow-lg" htmlFor="">Net Salary</label>
                                         <span className="col-span-1 text-center text-sm font-semibold px-4 y-1 bg-orange-600 text-white rounded-full shadow-lg">{netSalary}</span>
                                     </div>
                                 </div>
 
-                                <button className="w-full text-center text-sm font-semibold px-4 y-1 text-green-600 border-[1px] border-green-600 rounded-full shadow-lg hover:text-white hover:bg-green-600" onClick={(e) => { e.preventDefault(); setNetSalary((shift == 'Day') ? Math.ceil(calculateSalaryForDay) : Math.ceil(calculateSalaryForMor)) }}>Calculate</button>
+                                <button className="w-full text-center text-sm font-semibold px-4 y-1 text-green-600 border-[1px] border-green-600 rounded-full shadow-lg hover:text-white hover:bg-green-600" onClick={calculateSalaryClick}>Calculate</button>
                                 <button className="w-full text-center text-sm font-semibold px-4 y-1 text-orange-600 border-[1px] border-orange-600 rounded-full shadow-lg hover:text-white hover:bg-orange-600" onClick={salaryClick}>Create Salary</button>
                             </div>
                         </div>
@@ -180,14 +192,11 @@ const Createsalary = () => {
                                         <span className="col-span-1 text-center font-semibold px-4 y-1 text-green-600 border-[1px] border-green-600 rounded-full shadow-lg">{item.tSmonth}</span>
                                         <div className="col-span-2 flex flex-row items-center justify-evenly">
                                                 <button className="text-center font-semibold px-4 y-1 bg-orange-600 text-white rounded-xl shadow-lg">Details</button>
-                                                <Link to={item.tId} className="text-center font-semibold px-4 y-1 bg-green-600 text-white rounded-xl shadow-lg">Create Voucher</Link>
+                                                <Link to={item.tSmonth} className="text-center font-semibold px-4 y-1 bg-green-600 text-white rounded-xl shadow-lg" >Create Voucher</Link>
                                             </div>
                                         </div>
                                         )}
                                      )}
-                            </div>
-                            <div>
-                                <SalaryVoucher />
                             </div>
                         </div>
                     </div>

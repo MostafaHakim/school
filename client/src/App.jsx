@@ -32,7 +32,7 @@ function App() {
         <Route path="/teacher/salary" element={<Salary />} />
         <Route path="/teacher/new" element={<NewTeacher />} />
         <Route path="/teacher/salary/:id" element={<Createsalary />} />
-        <Route path="/teacher/salary/:id/:id" element={<SalaryVoucher />} />
+        <Route path="/teacher/salary/:id/:vmonth" element={<SalaryVoucher />} />
         <Route path="about" element={<About />} />
       </Route>
     )
