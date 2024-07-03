@@ -16,10 +16,10 @@ const Createsalary = () => {
 
 
     // ================================= input voucher data to new table from teacher table hook================
-    const [name,setName]=useState('')
-    const [designation,setDesignation] = useState('')
-    const [joiningDate,setJoiningDate] = useState('')
-    const [voucher,setVoucher] = useState([])
+    const [name, setName] = useState('')
+    const [designation, setDesignation] = useState('')
+    const [joiningDate, setJoiningDate] = useState('')
+    const [voucher, setVoucher] = useState([])
 
     const calculateSalaryForDay = parseInt(salary) - (((parseInt(late) >= 2 && shift == 'Day' ? (parseInt(late) * 100) : 0) + parseInt(salary) / 30 * parseInt(absent)))
     const calculateSalaryForMor = parseInt(salary) - (((parseInt(late) >= 2 && shift == 'Morning' ? (parseInt(late) * 50) : 0) + parseInt(salary) / 30 * parseInt(absent)))
@@ -41,45 +41,49 @@ const Createsalary = () => {
             })
             .then(data => {
                 setNewMonth(data)
+
             });
 
     }, [])
-   
-   
-    const salaryVoucher={
-            tId:id,
-            tName:name,
-            tDesignation:designation,
-            tShift:shift,
-            tJoiningDate:joiningDate,
-            tSalary:salary,
-            tSmonth:month,
-            tLate:late,
-            tAbsent:absent,
-            tNetSalary:netSalary
+
+
+    const salaryVoucher = {
+        tId: id,
+        tName: name,
+        tDesignation: designation,
+        tShift: shift,
+        tJoiningDate: joiningDate,
+        tSalary: salary,
+        tSmonth: month,
+        tLate: late,
+        tAbsent: absent,
+        tNetSalary: netSalary
     }
- const salaryClick = async(e) =>{
-    e.preventDefault()
-    await fetch('https://school-ebon-eight.vercel.app/api/salary',{
-        method:"POST",
-        body:JSON.stringify(salaryVoucher),
-        headers:{
-            "Content-Type":"application/json"
-        }
-    })
- }
+    const salaryClick = async (e) => {
+        e.preventDefault()
+        await fetch('https://school-ebon-eight.vercel.app/api/salary', {
+            method: "POST",
+            body: JSON.stringify(salaryVoucher),
+            headers: {
+                "Content-Type": "application/json"
+            }
+        })
+    }
 
- useEffect(()=>{
-    fetch('https://school-ebon-eight.vercel.app/api/salary')
-    .then(res=>{
-        return res.json()
-    })
-    .then(data=>{
-        setVoucher(data)
-    })
-},[])
+    useEffect(() => {
+        fetch('https://school-ebon-eight.vercel.app/api/salary')
+            .then(res => {
+                return res.json()
+            })
+            .then(data => {
+                setVoucher(data)
 
+            })
+    }, [])
 
+    const voucherClick = (e) => {
+        e.preventDefault()
+    }
 
 
     return (
@@ -127,7 +131,7 @@ const Createsalary = () => {
                                                         setName(data.tName)
                                                         setDesignation(data.tDesignation)
                                                         setJoiningDate(data.tJoiningDate)
-                                                        
+
                                                     })
                                                     setNetSalary(0)
                                                 }}>Create</button>
@@ -165,29 +169,45 @@ const Createsalary = () => {
                                 <button className="w-full text-center text-sm font-semibold px-4 y-1 text-orange-600 border-[1px] border-orange-600 rounded-full shadow-lg hover:text-white hover:bg-orange-600" onClick={salaryClick}>Create Salary</button>
                             </div>
                         </div>
+                        {/* ======================================================================= */}
+                        {/* ========================Created Salary=============================== */}
+                        {/* ======================================================================= */}
                         <div className="w-full">
                             <div className="w-full flex flex-col">
                                 <div className="w-full py-2 mb-2 px-4 text-center bg-green-500 text-white uppercase">Created Salary</div>
-                                     {voucher.filter(item=>{
-                                        if(item.tId==id){
-                                            return item
-                                        }
-                                     }).map(item=>{
-                                        return(
+                                {voucher.filter(item => {
+                                    if (item.tId == id) {
+                                        return item
+                                    }
+                                }).map(item => {
+                                    return (
                                         <div className="w-full grid grid-cols-5 gap-8 text-sm px-4 py-1">
-                                        <h2 className="col-span-1 text-center font-semibold px-4 y-1 text-green-600 border-[1px] border-green-600 rounded-full shadow-lg">{item.tName}</h2>
-                                        <span className="col-span-1 text-center font-semibold px-4 y-1 bg-orange-600 text-white rounded-full shadow-lg">{item.tDesignation}</span>
-                                        <span className="col-span-1 text-center font-semibold px-4 y-1 text-green-600 border-[1px] border-green-600 rounded-full shadow-lg">{item.tSmonth}</span>
-                                        <div className="col-span-2 flex flex-row items-center justify-evenly">
+                                            <h2 className="col-span-1 text-center font-semibold px-4 y-1 text-green-600 border-[1px] border-green-600 rounded-full shadow-lg">{item.tName}</h2>
+                                            <span className="col-span-1 text-center font-semibold px-4 y-1 bg-orange-600 text-white rounded-full shadow-lg">{item.tDesignation}</span>
+                                            <span className="col-span-1 text-center font-semibold px-4 y-1 text-green-600 border-[1px] border-green-600 rounded-full shadow-lg">{item.tSmonth}</span>
+                                            <div className="col-span-2 flex flex-row items-center justify-evenly">
                                                 <button className="text-center font-semibold px-4 y-1 bg-orange-600 text-white rounded-xl shadow-lg">Details</button>
-                                                <Link to={item.tId} className="text-center font-semibold px-4 y-1 bg-green-600 text-white rounded-xl shadow-lg">Create Voucher</Link>
+                                                <Link to={item.tId} className="text-center font-semibold px-4 y-1 bg-green-600 text-white rounded-xl shadow-lg" onClick={voucherClick}>Create Voucher</Link>
                                             </div>
                                         </div>
-                                        )}
-                                     )}
+                                    )
+                                }
+                                )}
                             </div>
+                            {/* ======================================================================= */}
+                            {/* ========================Created Salary=============================== */}
+                            {/* ======================================================================= */}
                             <div>
-                                <SalaryVoucher />
+                                {voucher.filter(item => {
+                                    if (item.tId == id) {
+                                        return item
+                                    }
+                                }).map(item => {
+                                    return (
+                                        <SalaryVoucher monthName={item.tSmonth} />
+                                    )
+                                })}
+
                             </div>
                         </div>
                     </div>

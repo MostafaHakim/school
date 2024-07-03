@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import logo from '../img/logo.png'
 
 const SalaryVoucher = () => {
+   
     const { id } = useParams()
     const [data, setData] = useState([])
     useEffect(() => {
@@ -21,12 +22,12 @@ const SalaryVoucher = () => {
         <>
             <div className="w-2/3 border-2 border-sky-500 py-2 px-4 flex flex-col items-center justify-center m-auto mt-20">
                 {data.filter(item => {
-                    if (item.tId == id) {
+                    if (item.tId == id && item.tSmonth == monthName) {
                         return item
                     }
                 }).map(item => {
                     return (
-                        <table class="table-fixed w-full border-collapse" key={item.tId}>
+                        <table className="table-fixed w-full border-collapse" key={item.tId}>
                             <caption className="caption-top border border-slate-300">
                                 <div className="grid grid-cols-8 w-full">
                                     <div className="col-span-1 p-4 flex flex-row justify-end">
