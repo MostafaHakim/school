@@ -13,6 +13,7 @@ const Createsalary = () => {
     const [newMonth, setNewMonth] = useState([])
     const [month, setMonth] = useState('')
     const [netSalary, setNetSalary] = useState(0)
+   
 
     
     // ================================= input voucher data to new table from teacher table hook================
@@ -74,7 +75,6 @@ const Createsalary = () => {
         }
     })
  }
-
  useEffect(()=>{
     fetch('https://school-ebon-eight.vercel.app/api/salary')
     .then(res=>{
@@ -145,7 +145,6 @@ const handelAddition = (e) =>{
                                                         setName(data.tName)
                                                         setDesignation(data.tDesignation)
                                                         setJoiningDate(data.tJoiningDate)
-                                                        
                                                     })
                                                     setNetSalary(0)
                                                 }}>Create</button>
@@ -196,6 +195,7 @@ const handelAddition = (e) =>{
                                         }
                                      }).map(item=>{
                                         return(
+                                        <div className="w-full">
                                         <div className="w-full grid grid-cols-5 gap-8 text-sm px-4 py-1">
                                         <h2 className="col-span-1 text-center font-semibold px-4 y-1 text-green-600 border-[1px] border-green-600 rounded-full shadow-lg">{item.tName}</h2>
                                         <span className="col-span-1 text-center font-semibold px-4 y-1 bg-orange-600 text-white rounded-full shadow-lg">{item.tDesignation}</span>
@@ -203,13 +203,9 @@ const handelAddition = (e) =>{
                                         <div className="col-span-2 flex flex-row items-center justify-evenly">
                                                 <button className="text-center font-semibold px-4 y-1 bg-orange-600 text-white rounded-xl shadow-lg" onClick={handelDetailsVoucher}>Details</button>
                                                 <Link to={item.tSmonth} className="text-center font-semibold px-4 y-1 bg-green-600 text-white rounded-xl shadow-lg" >Create Voucher</Link>
-                                            </div>
                                         </div>
-                                        )}
-                                     )}
-                            </div>
-                        </div>
-                        <div className="w-full">
+                                        </div>
+                                        <div className="w-full">
                         {toggle ?  <div>
                              <div className={`w-2/3 ${toggle} grid grid-cols-4 gap-4 p-4 text-sm capitalize border-[1px] m-auto `}>
                                     <span className="px-4 py-1 rounded-xl text-white bg-green-500">id</span>
@@ -236,10 +232,16 @@ const handelAddition = (e) =>{
                                         tDiduction:diduction,
                                         tNetSalary:netSalary */}
                                     </div> 
-                        <button className="w-full py-2 px-4 bg-orange-500 text-white text-sm uppercase" onClick={handelAddition}>Addition</button>
+                             <button className="w-full py-2 px-4 bg-orange-500 text-white text-sm uppercase" onClick={handelAddition}>Addition</button>
                                 </div>
                             : null}
                         </div>
+                                        </div>
+                                        )}
+                                     )}
+                            </div>
+                        </div>
+                        
                     </div>
                 )
             })}
