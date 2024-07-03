@@ -22,6 +22,7 @@ const createSalary = async (req, res) => {
             tLate,
             tAbsent,
             tDiduction,
+            tAddition,
             tNetSalary
         } = req.body;
         const newSalary = Salary({
@@ -35,6 +36,7 @@ const createSalary = async (req, res) => {
             tLate,
             tAbsent,
             tDiduction,
+            tAddition,
             tNetSalary
         })
         const createdSalary = await newSalary.save()

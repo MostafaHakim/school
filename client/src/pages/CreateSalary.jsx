@@ -14,13 +14,14 @@ const Createsalary = () => {
     const [month, setMonth] = useState('')
     const [netSalary, setNetSalary] = useState(0)
 
-
+    
     // ================================= input voucher data to new table from teacher table hook================
     const [name,setName]=useState('')
     const [designation,setDesignation] = useState('')
     const [joiningDate,setJoiningDate] = useState('')
     const [voucher,setVoucher] = useState([])
     const [diduction,setDiduction] = useState([])
+    const [toggle,setToggle] = useState(false)
   
 
     const calculateSalaryForDay = parseInt(salary) - (((parseInt(late) >= 2 && shift == 'Day' ? (parseInt(late) * 100) : 0) + parseInt(salary) / 30 * parseInt(absent)))
@@ -59,6 +60,7 @@ const Createsalary = () => {
             tLate:late,
             tAbsent:absent,
             tDiduction:diduction,
+            tAddition:0,
             tNetSalary:netSalary
     }
  const salaryClick = async(e) =>{
@@ -88,7 +90,14 @@ const calculateSalaryClick =(e) => {
     setDiduction((shift == 'Day') ? salary - Math.ceil(calculateSalaryForDay) : salary -  Math.ceil(calculateSalaryForMor))
 
  }
+const handelDetailsVoucher=(e)=>{
+    e.preventDefault()
+    setToggle(!toggle)
+}
+const handelAddition = (e) =>{
+    e.preventDefault()
 
+}
 
     return (
         <div className="w-full flex flex-col bg-slate-100">
@@ -191,13 +200,44 @@ const calculateSalaryClick =(e) => {
                                         <span className="col-span-1 text-center font-semibold px-4 y-1 bg-orange-600 text-white rounded-full shadow-lg">{item.tDesignation}</span>
                                         <span className="col-span-1 text-center font-semibold px-4 y-1 text-green-600 border-[1px] border-green-600 rounded-full shadow-lg">{item.tSmonth}</span>
                                         <div className="col-span-2 flex flex-row items-center justify-evenly">
-                                                <button className="text-center font-semibold px-4 y-1 bg-orange-600 text-white rounded-xl shadow-lg">Details</button>
+                                                <button className="text-center font-semibold px-4 y-1 bg-orange-600 text-white rounded-xl shadow-lg" onClick={handelDetailsVoucher}>Details</button>
                                                 <Link to={item.tSmonth} className="text-center font-semibold px-4 y-1 bg-green-600 text-white rounded-xl shadow-lg" >Create Voucher</Link>
                                             </div>
                                         </div>
                                         )}
                                      )}
                             </div>
+                        </div>
+                        <div className="w-full">
+                        {toggle ?  <div>
+                             <div className={`w-2/3 ${toggle} grid grid-cols-4 gap-4 p-4 text-sm capitalize border-[1px] m-auto `}>
+                                    <span className="px-4 py-1 rounded-xl text-white bg-green-500">id</span>
+                                    <span className="px-4 py-1 rounded-xl text-white bg-green-500">name</span>
+                                    <span className="px-4 py-1 rounded-xl text-white bg-green-500">designation</span>
+                                    <span className="px-4 py-1 rounded-xl text-white bg-green-500">Shift</span>
+                                    <span className="px-4 py-1 rounded-xl text-white bg-green-500">Joimimgdate</span>
+                                    <span className="px-4 py-1 rounded-xl text-white bg-green-500">Salary</span>
+                                    <span className="px-4 py-1 rounded-xl text-white bg-green-500">Month</span>
+                                    <span className="px-4 py-1 rounded-xl text-white bg-green-500">Late</span>
+                                    <span className="px-4 py-1 rounded-xl text-white bg-green-500">absent</span>
+                                    <span className="px-4 py-1 rounded-xl text-white bg-green-500">diduction</span>
+                                    <input type="text" className="px-4 py-1 rounded-xl text-green-500 bg-white placeholder:text-xs focus:outline-none border-[1px] border-green-500" placeholder="Addition"/>
+                                    <span className="px-4 py-1 rounded-xl text-white bg-green-500">NetSalry</span>
+                                    {/* tId:id,
+                                        tName:name,
+                                        tDesignation:designation,
+                                        tShift:shift,
+                                        tJoiningDate:joiningDate,
+                                        tSalary:salary,
+                                        tSmonth:month,
+                                        tLate:late,
+                                        tAbsent:absent,
+                                        tDiduction:diduction,
+                                        tNetSalary:netSalary */}
+                                    </div> 
+                        <button className="w-full py-2 px-4 bg-orange-500 text-white text-sm uppercase" onClick={handelAddition}>Addition</button>
+                                </div>
+                            : null}
                         </div>
                     </div>
                 )
