@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import SalaryVoucher from '../components/SalaryVoucher'
+
 
 
 const Createsalary = () => {
@@ -13,13 +13,25 @@ const Createsalary = () => {
     const [newMonth, setNewMonth] = useState([])
     const [month, setMonth] = useState('')
     const [netSalary, setNetSalary] = useState(0)
+   
 
-
+    
     // ================================= input voucher data to new table from teacher table hook================
+<<<<<<< HEAD
     const [name, setName] = useState('')
     const [designation, setDesignation] = useState('')
     const [joiningDate, setJoiningDate] = useState('')
     const [voucher, setVoucher] = useState([])
+=======
+    const [name,setName]=useState('')
+    const [designation,setDesignation] = useState('')
+    const [joiningDate,setJoiningDate] = useState('')
+    const [voucher,setVoucher] = useState([])
+    const [diduction,setDiduction] = useState([])
+    const [toggle,setToggle] = useState(false)
+    const [addition,setAddition] = useState('')
+  
+>>>>>>> 64ba89356fbc28d1fbc3f1d2b5bf74549c6f5cb7
 
     const calculateSalaryForDay = parseInt(salary) - (((parseInt(late) >= 2 && shift == 'Day' ? (parseInt(late) * 100) : 0) + parseInt(salary) / 30 * parseInt(absent)))
     const calculateSalaryForMor = parseInt(salary) - (((parseInt(late) >= 2 && shift == 'Morning' ? (parseInt(late) * 50) : 0) + parseInt(salary) / 30 * parseInt(absent)))
@@ -45,6 +57,7 @@ const Createsalary = () => {
             });
 
     }, [])
+<<<<<<< HEAD
 
 
     const salaryVoucher = {
@@ -84,7 +97,58 @@ const Createsalary = () => {
     const voucherClick = (e) => {
         e.preventDefault()
     }
+=======
+   
+   
+    const salaryVoucher={
+            tId:id,
+            tName:name,
+            tDesignation:designation,
+            tShift:shift,
+            tJoiningDate:joiningDate,
+            tSalary:salary,
+            tSmonth:month,
+            tLate:late,
+            tAbsent:absent,
+            tDiduction:diduction,
+            tAddition:0,
+            tNetSalary:netSalary
+    }
+ const salaryClick = async(e) =>{
+    e.preventDefault()
+    await fetch('https://school-ebon-eight.vercel.app/api/salary',{
+        method:"POST",
+        body:JSON.stringify(salaryVoucher),
+        headers:{
+            "Content-Type":"application/json"
+        }
+    })
+ }
+ useEffect(()=>{
+    fetch('https://school-ebon-eight.vercel.app/api/salary')
+    .then(res=>{
+        return res.json()
+    })
+    .then(data=>{
+        setVoucher(data)
+    })
+},[])
 
+const calculateSalaryClick =(e) => { 
+    e.preventDefault(); 
+    setNetSalary((shift == 'Day') ? Math.ceil(calculateSalaryForDay) : Math.ceil(calculateSalaryForMor))
+    setDiduction((shift == 'Day') ? salary - Math.ceil(calculateSalaryForDay) : salary -  Math.ceil(calculateSalaryForMor))
+
+ }
+const handelDetailsVoucher=(e)=>{
+    e.preventDefault()
+    setToggle(!toggle)
+}
+const handelAddition = (e) =>{
+    e.preventDefault()
+>>>>>>> 64ba89356fbc28d1fbc3f1d2b5bf74549c6f5cb7
+
+}
 
     return (
         <div className="w-full flex flex-col bg-slate-100">
@@ -131,7 +195,10 @@ const Createsalary = () => {
                                                         setName(data.tName)
                                                         setDesignation(data.tDesignation)
                                                         setJoiningDate(data.tJoiningDate)
+<<<<<<< HEAD
 
+=======
+>>>>>>> 64ba89356fbc28d1fbc3f1d2b5bf74549c6f5cb7
                                                     })
                                                     setNetSalary(0)
                                                 }}>Create</button>
@@ -160,12 +227,16 @@ const Createsalary = () => {
                                         <input type="text" className=" focus:outline-none border-[1px] border-orange-600 h-[22px] rounded-full shadow-lg px-8 text-sm font-semibold text-center" onChange={(e) => { setAbsent(e.target.value) }} />
                                     </div>
                                     <div className="grid grid-cols-3 py-2 items-center gap-4">
+                                        <label className="col-span-1 text-center text-sm font-semibold px-4 y-1 text-orange-600 border-[1px] border-orange-600 rounded-full shadow-lg" htmlFor="">Diduction</label>
+                                        <span className="col-span-1 text-center text-sm font-semibold px-4 y-1 bg-orange-600 text-white rounded-full shadow-lg">{diduction}</span>
+                                    </div>
+                                    <div className="grid grid-cols-3 py-2 items-center gap-4">
                                         <label className="col-span-1 text-center text-sm font-semibold px-4 y-1 text-orange-600 border-[1px] border-orange-600 rounded-full shadow-lg" htmlFor="">Net Salary</label>
                                         <span className="col-span-1 text-center text-sm font-semibold px-4 y-1 bg-orange-600 text-white rounded-full shadow-lg">{netSalary}</span>
                                     </div>
                                 </div>
 
-                                <button className="w-full text-center text-sm font-semibold px-4 y-1 text-green-600 border-[1px] border-green-600 rounded-full shadow-lg hover:text-white hover:bg-green-600" onClick={(e) => { e.preventDefault(); setNetSalary((shift == 'Day') ? Math.ceil(calculateSalaryForDay) : Math.ceil(calculateSalaryForMor)) }}>Calculate</button>
+                                <button className="w-full text-center text-sm font-semibold px-4 y-1 text-green-600 border-[1px] border-green-600 rounded-full shadow-lg hover:text-white hover:bg-green-600" onClick={calculateSalaryClick}>Calculate</button>
                                 <button className="w-full text-center text-sm font-semibold px-4 y-1 text-orange-600 border-[1px] border-orange-600 rounded-full shadow-lg hover:text-white hover:bg-orange-600" onClick={salaryClick}>Create Salary</button>
                             </div>
                         </div>
@@ -175,6 +246,7 @@ const Createsalary = () => {
                         <div className="w-full">
                             <div className="w-full flex flex-col">
                                 <div className="w-full py-2 mb-2 px-4 text-center bg-green-500 text-white uppercase">Created Salary</div>
+<<<<<<< HEAD
                                 {voucher.filter(item => {
                                     if (item.tId == id) {
                                         return item
@@ -189,11 +261,61 @@ const Createsalary = () => {
                                                 <button className="text-center font-semibold px-4 y-1 bg-orange-600 text-white rounded-xl shadow-lg">Details</button>
                                                 <Link to={item.tId} className="text-center font-semibold px-4 y-1 bg-green-600 text-white rounded-xl shadow-lg" onClick={voucherClick}>Create Voucher</Link>
                                             </div>
+=======
+                                     {voucher.filter(item=>{
+                                        if(item.tId==id){
+                                            return item
+                                        }
+                                     }).map(item=>{
+                                        return(
+                                        <div className="w-full">
+                                        <div className="w-full grid grid-cols-5 gap-8 text-sm px-4 py-1">
+                                        <h2 className="col-span-1 text-center font-semibold px-4 y-1 text-green-600 border-[1px] border-green-600 rounded-full shadow-lg">{item.tName}</h2>
+                                        <span className="col-span-1 text-center font-semibold px-4 y-1 bg-orange-600 text-white rounded-full shadow-lg">{item.tDesignation}</span>
+                                        <span className="col-span-1 text-center font-semibold px-4 y-1 text-green-600 border-[1px] border-green-600 rounded-full shadow-lg">{item.tSmonth}</span>
+                                        <div className="col-span-2 flex flex-row items-center justify-evenly">
+                                                <button className="text-center font-semibold px-4 y-1 bg-orange-600 text-white rounded-xl shadow-lg" onClick={handelDetailsVoucher}>Details</button>
+                                                <Link to={item.tSmonth} className="text-center font-semibold px-4 y-1 bg-green-600 text-white rounded-xl shadow-lg" >Create Voucher</Link>
+                                        </div>
+                                        </div>
+                                        <div className="w-full">
+                        {toggle ?  <div>
+                             <div className={`w-2/3 ${toggle} grid grid-cols-4 gap-4 p-4 text-sm capitalize border-[1px] m-auto `}>
+                                    <span className="px-4 py-1 rounded-xl text-white bg-green-500">id</span>
+                                    <span className="px-4 py-1 rounded-xl text-white bg-green-500">name</span>
+                                    <span className="px-4 py-1 rounded-xl text-white bg-green-500">designation</span>
+                                    <span className="px-4 py-1 rounded-xl text-white bg-green-500">Shift</span>
+                                    <span className="px-4 py-1 rounded-xl text-white bg-green-500">Joimimgdate</span>
+                                    <span className="px-4 py-1 rounded-xl text-white bg-green-500">Salary</span>
+                                    <span className="px-4 py-1 rounded-xl text-white bg-green-500">Month</span>
+                                    <span className="px-4 py-1 rounded-xl text-white bg-green-500">Late</span>
+                                    <span className="px-4 py-1 rounded-xl text-white bg-green-500">absent</span>
+                                    <span className="px-4 py-1 rounded-xl text-white bg-green-500">diduction</span>
+                                    <input type="text" className="px-4 py-1 rounded-xl text-green-500 bg-white placeholder:text-xs focus:outline-none border-[1px] border-green-500" placeholder="Addition" onChange={(e)=>{setAddition(e.target.value)}}/>
+                                    <span className="px-4 py-1 rounded-xl text-white bg-green-500">NetSalry</span>
+                                    {/* tId:id,
+                                        tName:name,
+                                        tDesignation:designation,
+                                        tShift:shift,
+                                        tJoiningDate:joiningDate,
+                                        tSalary:salary,
+                                        tSmonth:month,
+                                        tLate:late,
+                                        tAbsent:absent,
+                                        tDiduction:diduction,
+                                        tNetSalary:netSalary */}
+                                    </div> 
+                             <button className="w-full py-2 px-4 bg-orange-500 text-white text-sm uppercase" onClick={handelAddition}>Addition</button>
+                                </div>
+                            : null}
+                        </div>
+>>>>>>> 64ba89356fbc28d1fbc3f1d2b5bf74549c6f5cb7
                                         </div>
                                     )
                                 }
                                 )}
                             </div>
+<<<<<<< HEAD
                             {/* ======================================================================= */}
                             {/* ========================Created Salary=============================== */}
                             {/* ======================================================================= */}
@@ -209,7 +331,10 @@ const Createsalary = () => {
                                 })}
 
                             </div>
+=======
+>>>>>>> 64ba89356fbc28d1fbc3f1d2b5bf74549c6f5cb7
                         </div>
+                        
                     </div>
                 )
             })}

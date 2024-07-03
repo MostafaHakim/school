@@ -3,8 +3,13 @@ import { useParams } from "react-router-dom";
 import logo from '../img/logo.png'
 
 const SalaryVoucher = () => {
+<<<<<<< HEAD
    
     const { id } = useParams()
+=======
+
+    const { id, vmonth } = useParams()
+>>>>>>> 64ba89356fbc28d1fbc3f1d2b5bf74549c6f5cb7
     const [data, setData] = useState([])
     useEffect(() => {
         fetch('https://school-ebon-eight.vercel.app/api/salary')
@@ -20,14 +25,22 @@ const SalaryVoucher = () => {
 
     return (
         <>
-            <div className="w-2/3 border-2 border-sky-500 py-2 px-4 flex flex-col items-center justify-center m-auto mt-20">
+            <div className="w-2/3 border-2 border-sky-500 py-2 px-4 flex flex-col items-center justify-center m-auto mt-20" >
                 {data.filter(item => {
+<<<<<<< HEAD
                     if (item.tId == id && item.tSmonth == monthName) {
+=======
+                    if (item.tId == id&&item.tSmonth==vmonth) {
+>>>>>>> 64ba89356fbc28d1fbc3f1d2b5bf74549c6f5cb7
                         return item
                     }
                 }).map(item => {
                     return (
+<<<<<<< HEAD
                         <table className="table-fixed w-full border-collapse" key={item.tId}>
+=======
+                        <table class="table-fixed w-full border-collapse" key={item._id}>
+>>>>>>> 64ba89356fbc28d1fbc3f1d2b5bf74549c6f5cb7
                             <caption className="caption-top border border-slate-300">
                                 <div className="grid grid-cols-8 w-full">
                                     <div className="col-span-1 p-4 flex flex-row justify-end">
@@ -70,11 +83,11 @@ const SalaryVoucher = () => {
                                     <td className="border border-slate-300">Addition</td>
                                     <td className="border border-slate-300">{item.tAddition}</td>
                                     <td className="border border-slate-300">Diduction</td>
-                                    <td className="border border-slate-300">{item.Diduction}</td>
+                                    <td className="border border-slate-300">{item.tDiduction}</td>
                                 </tr>
                                 <tr>
                                     <td className="border border-slate-300">Net Salary</td>
-                                    <td className="border border-slate-300">{item.netSalary}</td>
+                                    <td className="border border-slate-300">{item.tNetSalary}</td>
                                     <td className="border border-slate-300">In Word</td>
                                     <td className="border border-slate-300">14500</td>
                                 </tr>
