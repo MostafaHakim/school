@@ -7,8 +7,11 @@ import Student from "./pages/Student"
 import About from "./pages/About"
 import Salary from "./pages/Salary"
 import Createsalary from "./pages/CreateSalary"
+import TeacherProfile from "./pages/TeacherProfile"
 import NewTeacher from "./pages/NewTeacher"
 import SalaryVoucher from "./components/SalaryVoucher"
+import MonthLayout from "./layouts/MonthLayout"
+import SalaryMonth from "./components/SalaryMonth"
 
 
 function App() {
@@ -23,11 +26,14 @@ function App() {
       }, [])
 
   })
+
   const router = createBrowserRouter(
     createRoutesFromElements(
       <Route path="/" element={<RootLayouts />}>
         <Route index element={<Dashbord />} />
         <Route path="teacher" element={<Teacher />} />
+        <Route path="teacher/:id" element={<TeacherProfile />} />
+        <Route path="teacher/:id/:month" element={<SalaryMonth />} />
         <Route path="student" element={<Student />} />
         <Route path="/teacher/salary" element={<Salary />} />
         <Route path="/teacher/new" element={<NewTeacher />} />

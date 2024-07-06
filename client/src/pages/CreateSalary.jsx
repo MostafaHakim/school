@@ -17,6 +17,7 @@ const Createsalary = () => {
 
     
     // ================================= input voucher data to new table from teacher table hook================
+    
     const [name,setName]=useState('')
     const [designation,setDesignation] = useState('')
     const [joiningDate,setJoiningDate] = useState('')
